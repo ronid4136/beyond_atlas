@@ -1,0 +1,138 @@
+/* ==========================================================================
+   Style #70: ba-arcade-rover-lander-games-css-visible
+   ========================================================================== */
+<style id="ba-arcade-rover-lander-games-css">
+#game .ba-arcade-games{width:min(100%,980px);margin:0 auto 28px;padding:clamp(14px,2.4vw,26px);border:1px solid rgba(54,202,244,.3);border-radius:20px;background:linear-gradient(145deg,rgba(8,23,44,.92),rgba(8,34,51,.88));box-shadow:0 16px 45px rgba(0,0,0,.22)}
+#game .ba-arcade-heading{text-align:center;margin:0 0 18px}
+#game .ba-arcade-heading>span{color:#45d8f4;font-size:10px;letter-spacing:2px;font-weight:900}
+#game .ba-arcade-heading h3{color:#f3f8ff;font-size:clamp(21px,3vw,30px);margin:6px 0}
+#game .ba-arcade-heading p{color:#b9cbdc;font-size:13px;margin:0}
+#game .ba-arcade-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+#game .ba-arcade-card{display:flex;flex-direction:column;text-align:left;padding:0;overflow:hidden;border:1px solid rgba(93,192,231,.4);border-radius:15px;background:rgba(4,15,31,.8);color:#fff;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
+#game .ba-arcade-card:hover{transform:translateY(-3px);border-color:#35d5fa;box-shadow:0 10px 28px rgba(0,174,235,.15)}
+#game .ba-card-art{height:155px;position:relative;display:block;overflow:hidden}
+#game .ba-rover-art{background-color:#281309;background-image:linear-gradient(rgba(255,112,38,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,112,38,.08) 1px,transparent 1px),linear-gradient(180deg,#241008,#35180d);background-size:32px 32px,32px 32px,auto}
+#game .ba-art-rover{position:absolute;left:13%;top:47%;font-size:34px;color:#b8e9ff;text-shadow:0 0 13px #28c9ff}
+#game .ba-sample{position:absolute;width:12px;height:12px;border-radius:50%;background:#32c7ff;box-shadow:0 0 12px #32c7ff}
+#game .ba-sample.s1{left:45%;top:28%}#game .ba-sample.s2{left:72%;top:68%}#game .ba-sample.s3{left:84%;top:35%}
+#game .ba-rock{position:absolute;border:1px solid rgba(255,111,25,.5);border-radius:50%;background:#160b07}
+#game .ba-rock.r1{width:35px;height:35px;left:38%;top:52%}#game .ba-rock.r2{width:43px;height:43px;left:62%;top:20%}#game .ba-rock.r3{width:28px;height:28px;left:78%;top:58%}
+#game .ba-lander-art{background:#020916}
+#game .ba-stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#b9dfff 1px,transparent 1px);background-size:43px 39px,71px 57px;background-position:5px 7px,23px 16px}
+#game .ba-mini-lander{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);font-size:39px;filter:drop-shadow(0 0 12px #56bfff)}
+#game .ba-moon-horizon{position:absolute;left:-4%;right:-4%;height:48%;bottom:-24%;background:#29384d;border-top:2px solid #71839e;border-radius:50% 50% 0 0}
+#game .ba-card-copy{display:flex;flex-direction:column;gap:7px;padding:14px 15px 16px}
+#game .ba-card-copy b{font-size:15px;color:#f4f8ff}
+#game .ba-card-copy small{font-size:11px;line-height:1.45;color:#b9cbdc;min-height:32px}
+#game .ba-card-copy em{font-style:normal;color:#4bd9f6;font-size:10px;font-weight:900;letter-spacing:1px;margin-top:3px}
+#game .ba-game-play-area{margin:22px auto 8px;padding:16px;border:1px solid rgba(61,206,245,.55);border-radius:17px;background:#071426;box-shadow:0 12px 35px rgba(0,0,0,.28)}
+#game .ba-game-play-area[hidden]{display:none!important}
+#game .ba-game-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+#game .ba-game-kicker{color:#43d9f4;font-size:9px;letter-spacing:1.5px;font-weight:900}
+#game .ba-game-topline h3{color:#fff;font-size:20px;margin:3px 0}
+#game .ba-game-close{border:1px solid #52728e;border-radius:8px;padding:8px 12px;background:#132b43;color:#fff;font-weight:800;font-size:10px;cursor:pointer}
+#game .ba-game-instructions{font-size:12px;color:#b8cbdc;margin:6px 0 12px}
+#game .ba-canvas-wrap{width:100%;border:1px solid #28739b;border-radius:12px;overflow:hidden;background:#030b18;box-shadow:0 0 24px rgba(0,170,255,.1)}
+#game #baArcadeCanvas{display:block;width:100%;height:auto;aspect-ratio:800/380;touch-action:none}
+#game .ba-game-status{text-align:center;color:#42e2b0;font:700 12px ui-monospace,monospace;padding:10px 4px 5px;min-height:30px}
+#game .ba-game-controls{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:8px 0}
+#game .ba-game-controls button{border:1px solid #285d7e;border-radius:9px;background:#14283d;color:#f4f8ff;padding:11px 16px;font-size:11px;font-weight:900;cursor:pointer;touch-action:none}
+#game .ba-game-controls button:active{background:#149bd0}
+#game .ba-game-controls button[data-key="ArrowUp"]{background:#087eaf;border-color:#25c9f1}
+#game .ba-game-help{text-align:center;color:#829db4;font-size:10px;margin:5px 0 0}
+@media(max-width:650px){#game .ba-arcade-cards{grid-template-columns:1fr}#game .ba-card-art{height:135px}#game .ba-game-play-area{padding:10px}#game .ba-game-controls{gap:6px}#game .ba-game-controls button{padding:10px 11px;font-size:10px}}
+
+/* ==========================================================================
+   Style #71: ba-mission-stepper-moon-game-improved-css
+   ========================================================================== */
+#game .ba-mini-mission-steps{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 18px;max-width:720px;padding:12px 14px;border:1px solid rgba(61,205,244,.28);border-radius:14px;background:rgba(2,15,31,.62)}
+#game .ba-mini-step{display:flex;align-items:center;gap:8px;color:#8da9bd;font-size:11px;font-weight:800;white-space:nowrap}
+#game .ba-mini-step i{width:25px;height:25px;display:grid;place-items:center;border-radius:50%;border:1px solid #44617b;background:#10263b;color:#dceeff;font-style:normal}
+#game .ba-mini-step.active{color:#fff}
+#game .ba-mini-step.active i,#game .ba-mini-step.done i{background:#0ba9d4;border-color:#55e4ff;color:#001522;box-shadow:0 0 12px rgba(34,210,255,.32)}
+#game .ba-mini-step.done{color:#63e5bd}
+#game .ba-mini-mission-steps>b{height:1px;flex:1;max-width:90px;background:linear-gradient(90deg,#2ecce9,#37506a)}
+#game .ba-lander-art-photo{background-size:cover!important;background-position:center 56%!important}
+#game .ba-lander-art-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(1,9,21,.4),transparent 60%)}
+#game .ba-moon-hud{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin:0 0 10px}
+#game .ba-moon-hud[hidden]{display:none!important}
+#game .ba-moon-hud span{padding:7px 10px;border:1px solid rgba(53,198,234,.35);border-radius:8px;background:#0b2137;color:#91adc3;font-size:9px;font-weight:800;letter-spacing:.7px}
+#game .ba-moon-hud b{color:#43e1c0;margin-left:5px;font-size:11px}
+#game .ba-game-play-area:has(#baMoonHud:not([hidden])) .ba-canvas-wrap{border-color:#37d7f2;box-shadow:0 0 26px rgba(24,183,230,.14)}
+#game .ba-game-status{font-size:12px;line-height:1.5}
+@media(max-width:620px){#game .ba-mini-mission-steps{gap:5px;padding:9px 6px}#game .ba-mini-step{gap:4px;font-size:8px}#game .ba-mini-step i{width:21px;height:21px}#game .ba-moon-hud{justify-content:center}}
+
+/* ==========================================================================
+   Style #93: ROVER-3D-GAME-AND-PERFORMANCE
+   ========================================================================== */
+#game .mission-games-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch;width:100%;}#game .mission-games-grid>.mission-game-shell,#game .mission-games-grid>.rover-3d-game{min-width:0;width:100%;max-width:none;box-sizing:border-box;margin:0!important;}#game .mission-games-grid>.mission-game-shell{align-self:stretch;}.rover-3d-game{overflow:hidden;border:1px solid rgba(84,177,220,.34);border-radius:18px;background:linear-gradient(155deg,rgba(11,30,49,.98),rgba(4,12,24,.98));box-shadow:0 14px 38px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.04);color:#eaf6ff;padding:13px;display:flex;flex-direction:column;gap:10px;}.rover-game-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.rover-eyebrow{font-size:8px;letter-spacing:1.5px;font-weight:900;color:#76d7f6}.rover-game-head h3{font:900 17px/1.15 system-ui,sans-serif;letter-spacing:.7px;margin:4px 0;color:#f4fbff}.rover-game-head p{font-size:10px;color:#8da8bd;margin:0}.rover-live{font-size:8px;letter-spacing:1px;color:#8be9c1;white-space:nowrap}.rover-live i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#6ff0b3;box-shadow:0 0 9px #6ff0b3;margin-right:5px}.rover-canvas-wrap{height:clamp(190px,24vw,265px);min-height:185px;position:relative;overflow:hidden;border-radius:12px;border:1px solid rgba(104,164,199,.25);background:radial-gradient(ellipse at 50% 42%,#253e53,#0a1727 72%);isolation:isolate}.rover-canvas-wrap canvas{display:block;width:100%;height:100%;touch-action:pan-y;cursor:grab}.rover-canvas-wrap canvas:active{cursor:grabbing}.rover-hud{position:absolute;left:10px;right:10px;top:9px;display:flex;justify-content:space-between;pointer-events:none;font:800 8px/1.2 ui-monospace,monospace;letter-spacing:1px;color:#b5d5e8;text-shadow:0 1px 5px #06101b}.rover-hud b{color:#8ff0c3}.rover-canvas-hint{position:absolute;bottom:8px;left:10px;font:700 7px/1 ui-monospace,monospace;letter-spacing:1px;color:#a4bed0;opacity:.78;pointer-events:none}.rover-scan-flash{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle,rgba(74,221,255,.38),transparent 65%);opacity:0;transition:opacity .25s}.rover-scan-flash.active{opacity:1}.rover-game-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.rover-game-stats>div{padding:8px 9px;border-radius:9px;background:rgba(18,43,65,.7);border:1px solid rgba(109,171,205,.16);min-width:0}.rover-game-stats span{display:block;color:#7898ad;font-size:7px;letter-spacing:.8px;font-weight:800}.rover-game-stats b{display:block;margin-top:3px;color:#e9f8ff;font:900 16px/1.1 ui-monospace,monospace}.rover-game-actions{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}.rover-game-actions button,.rover-game-footer button{border:1px solid rgba(102,188,224,.3);background:linear-gradient(180deg,#142d43,#0b1b2d);color:#c9efff;border-radius:8px;padding:9px 4px;font-size:8px;font-weight:900;letter-spacing:.35px;cursor:pointer;transition:transform .15s,border-color .15s,background .15s}.rover-game-actions button:hover,.rover-game-footer button:hover{transform:translateY(-1px);border-color:#71dafa;background:#163b55}.rover-game-actions button:active{transform:scale(.97)}.rover-game-actions button:focus-visible,.rover-game-footer button:focus-visible{outline:2px solid #8deaff;outline-offset:2px}.rover-game-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:24px}.rover-game-footer span{font-size:9px;line-height:1.4;color:#9bb4c7}.rover-game-footer button{white-space:nowrap;padding:6px 8px;font-size:7px}@media(max-width:900px){#game .mission-games-grid{grid-template-columns:1fr}.rover-canvas-wrap{height:250px}.rover-game-actions button{font-size:9px;padding:10px 4px}}@media(max-width:480px){.rover-3d-game{padding:10px;border-radius:14px}.rover-canvas-wrap{height:205px;min-height:195px}.rover-game-actions{grid-template-columns:repeat(3,minmax(0,1fr))}.rover-game-stats>div{padding:7px}.rover-game-stats b{font-size:14px}}@media(prefers-reduced-motion:reduce){.rover-game-actions button,.rover-game-footer button,.rover-scan-flash{transition:none}}
+
+/* ==========================================================================
+   Style #94: ROVER-CLICK-BY-CLICK-FIX
+   ========================================================================== */
+.rover-step-guide{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 8px;padding:9px 10px;border:1px solid rgba(90,190,226,.2);border-radius:10px;background:linear-gradient(100deg,rgba(10,35,54,.92),rgba(7,20,35,.94));color:#a9c5d8;font-size:9px;font-weight:750;line-height:1.4}
+.rover-step-guide .rover-step-label{color:#79ddfa;font-size:8px;font-weight:950;letter-spacing:1px;margin-right:4px}
+.rover-step-guide b{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:rgba(79,196,232,.16);border:1px solid rgba(105,215,247,.35);color:#b9efff;margin-right:3px}
+.rover-step-guide .rover-step-arrow{color:#4c91ad;font-weight:900}
+.rover-game-actions button{min-height:38px;touch-action:manipulation}
+.rover-game-actions button:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:480px){.rover-step-guide{justify-content:flex-start;font-size:8px;gap:5px 6px}.rover-step-guide .rover-step-label{width:100%}}
+
+/* ==========================================================================
+   Style #95: BOTH-GAMES-LAUNCHER-STYLES
+   ========================================================================== */
+#game .section-head{position:relative}
+#openBothMissionGames{margin:12px auto 0;display:inline-flex;min-height:42px;align-items:center;justify-content:center}
+#game .mission-games-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:start!important;gap:18px!important}
+#game .mission-games-grid>.game-container,#game .mission-games-grid>.rover-3d-game{min-width:0!important;width:100%!important}
+#game .rover-canvas-wrap{height:280px!important;min-height:240px!important;position:relative!important}
+#game #rover3DCanvas{display:block!important;width:100%!important;height:100%!important;touch-action:pan-y!important;cursor:grab}
+#game .rover-game-actions{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+#game .rover-game-actions button{min-height:42px!important;cursor:pointer!important;touch-action:manipulation!important}
+#game .rover-game-actions button:active{transform:translateY(1px);filter:brightness(1.2)}
+#game .rover-game-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+@media(max-width:900px){#game .mission-games-grid{grid-template-columns:1fr!important}}
+
+/* ==========================================================================
+   Style #113: ba-arcade-rover-lander-games-css
+   ========================================================================== */
+#missionGamesGrid .ba-arcade-games{width:min(100%,980px);margin:0 auto 28px;padding:clamp(14px,2.4vw,26px);border:1px solid rgba(54,202,244,.3);border-radius:20px;background:linear-gradient(145deg,rgba(8,23,44,.92),rgba(8,34,51,.88));box-shadow:0 16px 45px rgba(0,0,0,.22)}
+#missionGamesGrid .ba-arcade-heading{text-align:center;margin:0 0 18px}
+#missionGamesGrid .ba-arcade-heading>span{color:#45d8f4;font-size:10px;letter-spacing:2px;font-weight:900}
+#missionGamesGrid .ba-arcade-heading h3{color:#f3f8ff;font-size:clamp(21px,3vw,30px);margin:6px 0}
+#missionGamesGrid .ba-arcade-heading p{color:#b9cbdc;font-size:13px;margin:0}
+#missionGamesGrid .ba-arcade-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+#missionGamesGrid .ba-arcade-card{display:flex;flex-direction:column;text-align:left;padding:0;overflow:hidden;border:1px solid rgba(93,192,231,.4);border-radius:15px;background:rgba(4,15,31,.8);color:#fff;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
+#missionGamesGrid .ba-arcade-card:hover{transform:translateY(-3px);border-color:#35d5fa;box-shadow:0 10px 28px rgba(0,174,235,.15)}
+#missionGamesGrid .ba-card-art{height:155px;position:relative;display:block;overflow:hidden}
+#missionGamesGrid .ba-rover-art{background-color:#281309;background-image:linear-gradient(rgba(255,112,38,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,112,38,.08) 1px,transparent 1px),linear-gradient(180deg,#241008,#35180d);background-size:32px 32px,32px 32px,auto}
+#missionGamesGrid .ba-art-rover{position:absolute;left:13%;top:47%;font-size:34px;color:#b8e9ff;text-shadow:0 0 13px #28c9ff}
+#missionGamesGrid .ba-sample{position:absolute;width:12px;height:12px;border-radius:50%;background:#32c7ff;box-shadow:0 0 12px #32c7ff}
+#missionGamesGrid .ba-sample.s1{left:45%;top:28%}#missionGamesGrid .ba-sample.s2{left:72%;top:68%}#missionGamesGrid .ba-sample.s3{left:84%;top:35%}
+#missionGamesGrid .ba-rock{position:absolute;border:1px solid rgba(255,111,25,.5);border-radius:50%;background:#160b07}
+#missionGamesGrid .ba-rock.r1{width:35px;height:35px;left:38%;top:52%}#missionGamesGrid .ba-rock.r2{width:43px;height:43px;left:62%;top:20%}#missionGamesGrid .ba-rock.r3{width:28px;height:28px;left:78%;top:58%}
+#missionGamesGrid .ba-lander-art{background:#020916}
+#missionGamesGrid .ba-stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#b9dfff 1px,transparent 1px);background-size:43px 39px,71px 57px;background-position:5px 7px,23px 16px}
+#missionGamesGrid .ba-mini-lander{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);font-size:39px;filter:drop-shadow(0 0 12px #56bfff)}
+#missionGamesGrid .ba-moon-horizon{position:absolute;left:-4%;right:-4%;height:48%;bottom:-24%;background:#29384d;border-top:2px solid #71839e;border-radius:50% 50% 0 0}
+#missionGamesGrid .ba-card-copy{display:flex;flex-direction:column;gap:7px;padding:14px 15px 16px}
+#missionGamesGrid .ba-card-copy b{font-size:15px;color:#f4f8ff}
+#missionGamesGrid .ba-card-copy small{font-size:11px;line-height:1.45;color:#b9cbdc;min-height:32px}
+#missionGamesGrid .ba-card-copy em{font-style:normal;color:#4bd9f6;font-size:10px;font-weight:900;letter-spacing:1px;margin-top:3px}
+#missionGamesGrid .ba-game-play-area{margin:22px auto 8px;padding:16px;border:1px solid rgba(61,206,245,.55);border-radius:17px;background:#071426;box-shadow:0 12px 35px rgba(0,0,0,.28)}
+#missionGamesGrid .ba-game-play-area[hidden]{display:none!important}
+#missionGamesGrid .ba-game-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+#missionGamesGrid .ba-game-kicker{color:#43d9f4;font-size:9px;letter-spacing:1.5px;font-weight:900}
+#missionGamesGrid .ba-game-topline h3{color:#fff;font-size:20px;margin:3px 0}
+#missionGamesGrid .ba-game-close{border:1px solid #52728e;border-radius:8px;padding:8px 12px;background:#132b43;color:#fff;font-weight:800;font-size:10px;cursor:pointer}
+#missionGamesGrid .ba-game-instructions{font-size:12px;color:#b8cbdc;margin:6px 0 12px}
+#missionGamesGrid .ba-canvas-wrap{width:100%;border:1px solid #28739b;border-radius:12px;overflow:hidden;background:#030b18;box-shadow:0 0 24px rgba(0,170,255,.1)}
+#missionGamesGrid #baArcadeCanvas{display:block;width:100%;height:auto;aspect-ratio:800/380;touch-action:none}
+#missionGamesGrid .ba-game-status{text-align:center;color:#42e2b0;font:700 12px ui-monospace,monospace;padding:10px 4px 5px;min-height:30px}
+#missionGamesGrid .ba-game-controls{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:8px 0}
+#missionGamesGrid .ba-game-controls button{border:1px solid #285d7e;border-radius:9px;background:#14283d;color:#f4f8ff;padding:11px 16px;font-size:11px;font-weight:900;cursor:pointer;touch-action:none}
+#missionGamesGrid .ba-game-controls button:active{background:#149bd0}
+#missionGamesGrid .ba-game-controls button[data-key="ArrowUp"]{background:#087eaf;border-color:#25c9f1}
+#missionGamesGrid .ba-game-help{text-align:center;color:#829db4;font-size:10px;margin:5px 0 0}
+@media(max-width:650px){#missionGamesGrid .ba-arcade-cards{grid-template-columns:1fr}#missionGamesGrid .ba-card-art{height:135px}#missionGamesGrid .ba-game-play-area{padding:10px}#missionGamesGrid .ba-game-controls{gap:6px}#missionGamesGrid .ba-game-controls button{padding:10px 11px;font-size:10px}}
+

@@ -1,0 +1,360 @@
+/* ==========================================================================
+   Style #65: ba-true-3d-earth-css
+   ========================================================================== */
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-visible-earth-layer {
+  position:absolute!important;inset:0!important;z-index:0!important;overflow:hidden!important;
+  background:#020817!important;pointer-events:none!important;filter:none!important;
+}
+html body #hero #baTrueEarthCanvas {
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  display:block!important;z-index:0!important;pointer-events:none!important;
+}
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-planet {
+  z-index:2!important;
+}
+
+/* ==========================================================================
+   Style #66: ba-moon-mars-small-spaced-3d
+   ========================================================================== */
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-moon {
+  width: 38px !important;
+  height: 38px !important;
+  top: 18% !important;
+  left: 8% !important;
+  border-radius: 50% !important;
+  background:
+    radial-gradient(circle at 30% 28%, #ffffff 0%, #e2e7ef 20%, #aeb8c8 58%, #4c596b 82%, #111c2d 100%) !important;
+  box-shadow:
+    inset -8px -5px 11px rgba(0,0,0,.72),
+    inset 3px 2px 5px rgba(255,255,255,.38),
+    0 0 14px rgba(160,205,255,.24) !important;
+}
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-moon span {
+  background:
+    radial-gradient(circle at 30% 42%, rgba(75,82,94,.48) 0 9%, transparent 10%),
+    radial-gradient(circle at 66% 28%, rgba(75,82,94,.36) 0 7%, transparent 8%),
+    radial-gradient(circle at 64% 70%, rgba(75,82,94,.34) 0 11%, transparent 12%) !important;
+}
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-mars {
+  width: 32px !important;
+  height: 32px !important;
+  top: 28% !important;
+  right: 7% !important;
+  border-radius: 50% !important;
+  background:
+    radial-gradient(circle at 30% 25%, #ffd1a5 0%, #e88959 22%, #b84c35 60%, #55231f 85%, #160e16 100%) !important;
+  box-shadow:
+    inset -7px -5px 10px rgba(0,0,0,.72),
+    inset 3px 2px 5px rgba(255,220,190,.28),
+    0 0 13px rgba(255,125,75,.20) !important;
+}
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-mars span {
+  background:
+    radial-gradient(ellipse at 64% 30%, rgba(65,25,21,.48) 0 12%, transparent 13%),
+    radial-gradient(ellipse at 28% 62%, rgba(75,27,22,.42) 0 10%, transparent 11%) !important;
+}
+@media (max-width: 900px) {
+  html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-moon {
+    width: 32px !important;
+    height: 32px !important;
+    top: 13% !important;
+    left: 5% !important;
+  }
+  html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-mars {
+    width: 28px !important;
+    height: 28px !important;
+    top: 19% !important;
+    right: 5% !important;
+  }
+}
+
+/* ==========================================================================
+   Style #67: ba-earth-left-moon-mars-bigger-rotation
+   ========================================================================== */
+/* Move the real 3D Earth left without changing the rest of the hero layout. */
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-visible-earth-layer {
+  transform: translateX(-3.5%) !important;
+}
+
+/* Slightly larger sky planets, retaining their existing 3D spherical shading. */
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-moon {
+  width: 58px !important;
+  height: 58px !important;
+}
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-mars {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+/* Animate the surface markings to suggest each planet rotating on its axis. */
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-moon span {
+  background-size: 200% 100%, 200% 100%, 200% 100% !important;
+  animation: baMoonSurfaceSpin 18s linear infinite !important;
+}
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-mars span {
+  background-size: 200% 100%, 200% 100% !important;
+  animation: baMarsSurfaceSpin 14s linear infinite !important;
+}
+@keyframes baMoonSurfaceSpin {
+  from { background-position: 0% 0%, 0% 0%, 0% 0%; }
+  to   { background-position: 100% 0%, 100% 0%, 100% 0%; }
+}
+@keyframes baMarsSurfaceSpin {
+  from { background-position: 0% 0%, 0% 0%; }
+  to   { background-position: 100% 0%, 100% 0%; }
+}
+@media (max-width: 900px) {
+  html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-moon {
+    width: 46px !important;
+    height: 46px !important;
+  }
+  html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-mars {
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-moon span,
+  html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-mars span {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   Style #68: ba-true3d-moon-mars-css
+   ========================================================================== */
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-moon {
+  width: clamp(92px, 8vw, 142px) !important;
+  height: clamp(92px, 8vw, 142px) !important;
+  top: 13% !important;
+  left: 7% !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  animation: none !important;
+}
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-mars {
+  width: clamp(82px, 7vw, 124px) !important;
+  height: clamp(82px, 7vw, 124px) !important;
+  top: 19% !important;
+  right: 6% !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  animation: none !important;
+}
+html body #hero .ba-sky-planet > span { display:none !important; }
+html body #hero .ba-sky-planet > canvas.ba-planet-webgl {
+  display:block !important;
+  width:100% !important;height:100% !important;
+  border-radius:50% !important;
+}
+@media (max-width:900px) {
+  html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-moon {
+    width:68px !important;height:68px !important;left:4% !important;top:18% !important;
+  }
+  html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-mars {
+    width:62px !important;height:62px !important;right:4% !important;top:19% !important;
+  }
+}
+
+/* ==========================================================================
+   Style #69: ba-shared-planet-scene-style
+   ========================================================================== */
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-sky-planet {
+  display:none !important;
+}
+html body #hero .student-hero.redesigned-hero.hero-first-option-layout > .ba-visible-earth-layer {
+  pointer-events:auto !important;
+}
+html body #hero #baTrueEarthCanvas {
+  pointer-events:auto !important;
+  touch-action:none !important;
+  cursor:grab;
+}
+html body #hero #baTrueEarthCanvas.ba-dragging { cursor:grabbing; }
+
+/* ==========================================================================
+   Style #101: ba-separate-moon-mars-3d-stage-backgrounds
+   ========================================================================== */
+/* Moon 3D viewer: lunar regolith, craters and deep space behind the Apollo model. */
+#real-3d-hardware .moon-real3d .moon-stage {
+  position:relative!important;
+  overflow:hidden!important;
+  background:#111a25 url("../assets/images/moon-stage-bg.jpg") center 56%/cover no-repeat!important;
+  border:1px solid rgba(210,225,240,.55)!important;
+}
+#real-3d-hardware .moon-real3d .moon-stage model-viewer {
+  background:transparent!important;
+  --poster-color:transparent;
+}
+#real-3d-hardware .moon-real3d .moon-stage .model-poster {
+  background:transparent!important;
+  color:#fff!important;
+  text-shadow:0 1px 4px rgba(0,0,0,.8)!important;
+}
+
+/* Mars 3D viewer: red Martian valley and rocky ground behind Perseverance. */
+#real-3d-hardware .mars-real3d .mars-stage {
+  position:relative!important;
+  overflow:hidden!important;
+  background:#a94e2b url("../assets/images/mars-stage-bg.jpg") center 58%/cover no-repeat!important;
+  border:1px solid rgba(255,205,170,.62)!important;
+}
+#real-3d-hardware .mars-real3d .mars-stage iframe {
+  background:transparent!important;
+  /* NASA's cross-origin embed has a white canvas; multiply lets its white
+     backdrop blend into the Mars scene while retaining the rover model. */
+  mix-blend-mode:multiply!important;
+  opacity:.98!important;
+  border:0!important;
+}
+#real-3d-hardware .real3d-card.moon-real3d,
+#real-3d-hardware .real3d-card.mars-real3d {
+  background:rgba(7,18,32,.55)!important;
+  border-color:rgba(140,190,225,.58)!important;
+}
+
+/* ==========================================================================
+   Style #102: ba-moon-mars-click-to-load-3d
+   ========================================================================== */
+#real-3d-hardware .moon-stage,
+#real-3d-hardware .mars-stage {
+  position:relative!important;
+  overflow:hidden!important;
+  aspect-ratio: 1.38 / 1!important;
+  min-height:300px!important;
+  background:#101b2a!important;
+  border-radius:16px!important;
+}
+#real-3d-hardware .ba-planet-preview {
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center 55%!important;
+  z-index:3!important;
+}
+#real-3d-hardware .ba-lazy-3d-viewer {
+  display:none!important;
+  position:relative!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:300px!important;
+  border:0!important;
+  background:transparent!important;
+  z-index:2!important;
+}
+#real-3d-hardware .ba-lazy-3d-viewer.ba-viewer-open {
+  display:block!important;
+}
+#real-3d-hardware .ba-planet-preview.ba-preview-hidden {
+  display:none!important;
+}
+#real-3d-hardware .ba-load-3d-button {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  width:min(78%,340px)!important;
+  min-height:54px!important;
+  margin:14px auto 18px!important;
+  border-radius:30px!important;
+  border:1px solid rgba(50,220,255,.9)!important;
+  background:linear-gradient(100deg,#063b59,#075f83)!important;
+  color:#fff!important;
+  font-size:16px!important;
+  font-weight:800!important;
+  letter-spacing:.2px!important;
+  cursor:pointer!important;
+  box-shadow:0 0 18px rgba(0,190,255,.18)!important;
+}
+#real-3d-hardware .mars-real3d .ba-load-3d-button {
+  border-color:rgba(255,125,72,.95)!important;
+  background:linear-gradient(100deg,#762d1d,#bd4a25)!important;
+  box-shadow:0 0 18px rgba(255,112,55,.18)!important;
+}
+#real-3d-hardware .ba-load-3d-button:hover {
+  filter:brightness(1.14)!important;
+}
+#real-3d-hardware .real3d-card-copy {
+  margin-top:0!important;
+}
+@media(max-width:700px) {
+  #real-3d-hardware .moon-stage,
+  #real-3d-hardware .mars-stage {min-height:240px!important}
+  #real-3d-hardware .ba-load-3d-button {width:90%!important}
+}
+
+/* ==========================================================================
+   Style #103: ba-moon-nasa-apollo-photo-only
+   ========================================================================== */
+#real-3d-hardware .moon-real3d .moon-stage {
+  position:relative!important;
+  overflow:hidden!important;
+}
+#real-3d-hardware .moon-real3d .moon-stage > img.ba-moon-preview {
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:4!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center 50%!important;
+}
+#real-3d-hardware .moon-real3d .moon-stage > model-viewer.ba-lazy-3d-viewer {
+  display:none!important;
+  background:#fff!important;
+  --poster-color:#fff!important;
+}
+#real-3d-hardware .moon-real3d .moon-stage > model-viewer.ba-lazy-3d-viewer.ba-viewer-open {
+  display:block!important;
+}
+#real-3d-hardware .moon-real3d .moon-stage > img.ba-moon-preview.ba-preview-hidden {
+  display:none!important;
+}
+
+/* ==========================================================================
+   Style #104: ba-mars-3d-white-background-only
+   ========================================================================== */
+/* White background only inside the Mars interactive 3D viewer stage. */
+#real-3d-hardware .mars-real3d .mars-stage {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+#real-3d-hardware .mars-real3d .mars-stage iframe,
+#real-3d-hardware .mars-real3d .mars-stage .ba-lazy-3d-viewer {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  --poster-color: #ffffff !important;
+}
+#real-3d-hardware .mars-real3d .mars-stage.ba-mars-3d-open {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+/* ==========================================================================
+   Style #105: ba-moon-3d-soft-red-background
+   ========================================================================== */
+/* Very subtle warm red tint, restricted to the Moon 3D viewer stage. */
+#real-3d-hardware .moon-real3d .moon-stage,
+#real-3d-hardware .moon-real3d .moon-stage.ba-white-3d-mode {
+  background: #fff8f6 !important;
+  background-color: #fff8f6 !important;
+  background-image: none !important;
+}
+#real-3d-hardware .moon-real3d .moon-stage model-viewer,
+#real-3d-hardware .moon-real3d .moon-stage model-viewer.ba-lazy-3d-viewer {
+  background: #fff8f6 !important;
+  background-color: #fff8f6 !important;
+  --poster-color: #fff8f6 !important;
+}
+

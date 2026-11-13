@@ -1,0 +1,30 @@
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Deployment & Environment
+.vercel
+.env
+.env.local
+.env.*.local
+
+# Node & Build artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Monolithic original backup
+1st.html
+*.backup.html
+*.original.html
