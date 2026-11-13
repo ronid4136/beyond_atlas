@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Planets & NASA Hardware Lab — BEYOND ATLAS</title>
+
+  <!-- Preconnect Resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://assets.science.nasa.gov" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://threejs.org" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://www.solarsystemscope.com" crossorigin="anonymous" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- 3D Engines & WebGL Libraries -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" type="module"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/planets.css" />
+  <link rel="stylesheet" href="css/games.css" />
+  <link rel="stylesheet" href="css/theme-override.css" />
+  <link rel="stylesheet" href="css/beyond-theme.css" />
+</head>
+<body>
+  <div class="audience-banner">🚀 NASA SPACE APPS CHALLENGE · "LEFT BEHIND, NOT FORGOTTEN" · TEAM ASTROFORGE</div>
+
+  <!-- Main Navigation Header -->
+  <header>
+    <a aria-label="BEYOND ATLAS — Back to homepage" class="logo atlas-brand atlas-home-link" href="index.html">
+      <span aria-hidden="true" class="atlas-mark">
+        <svg viewbox="0 0 52 52">
+          <circle cx="26" cy="26" fill="none" r="17" stroke="#8be7ff" stroke-width="2.2"></circle>
+          <ellipse cx="26" cy="26" fill="none" rx="23" ry="9" stroke="#f4b66a" stroke-width="2.1" transform="rotate(-32 26 26)"></ellipse>
+          <path d="M25 13l7 8-5 15-7-8z" fill="#8be7ff" stroke="#eafaff" stroke-width="1.2"></path>
+          <circle cx="26" cy="25" fill="#061426" r="2.5"></circle>
+          <path d="M19 32l-5 7 9-3M30 35l4 5 1-9" fill="none" stroke="#ffb66f" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </span>
+      <span class="atlas-word"><b>BEYOND</b><em>ATLAS</em></span>
+    </a>
+
+    <nav>
+      <a href="index.html#hero"><span>🌌</span><span>Orbit</span></a>
+      <a class="active" href="explore.html#moon"><span>🌕</span><span>Moon</span></a>
+      <a class="active" href="explore.html#mars"><span>🔴</span><span>Mars</span></a>
+      <a class="active" href="explore.html#real-3d-hardware"><span>🧊</span><span>3D View</span></a>
+      <a href="hardware.html"><span>🔧</span><span>Hardware</span></a>
+      <a href="timeline.html"><span>🚀</span><span>Timeline</span></a>
+      <a href="telemetry.html"><span>📡</span><span>Live Data</span></a>
+      <a href="index.html#game"><span>🎮</span><span>Game</span></a>
+      <a href="index.html#quiz"><span>🧠</span><span>Quiz</span></a>
+      <a href="hardware.html#archive"><span>🔍</span><span>Live Search</span></a>
+    </nav>
+
+    <div class="control-box">
+      <button class="audio-btn" id="audioToggleBtn" onclick="toggleGlobalAudio()">🔇 Voice: OFF</button>
+      <select class="lang-selector" id="langSelect">
+        <option value="en-US">English 🇺🇸</option>
+        <option value="bn-BD">বাংলা 🇧🇩</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Page Hero Banner -->
+  <div class="page-hero-banner">
+    <span class="beyond-eyebrow">IMMERSIVE 3D WORLDS</span>
+    <h1>Explore the Moon & Mars in <span class="cyan">3D</span></h1>
+    <p>Interact with NASA 3D rovers, lunar landing modules, and explore mechanical engineering components step by step.</p>
+    <div style="display:flex; justify-content:center; gap:12px; margin-top:18px;">
+      <a class="btn-cyan-pill" href="#real-3d-hardware">Inspect 3D Hardware ↘</a>
+      <a class="btn-glass-pill" href="#hardware-step-lab">Step-by-Step Lab ↘</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- REAL NASA 3D HARDWARE -->
+    <section aria-labelledby="real3dTitle" class="real-hardware-3d" id="real-3d-hardware">
+      <div class="real3d-heading">
+        <span class="real3d-eyebrow">NASA 3D MODEL COLLECTION</span>
+        <div class="real3d-title-row">
+          <h2 id="real3dTitle">Explore the machines in real 3D</h2>
+          <a class="nasa-eyes-mini" href="https://eyes.nasa.gov/apps/solar-system/" rel="noopener noreferrer" target="_blank">NASA Eyes · Click here ↗</a>
+        </div>
+        <p>Drag to rotate • Scroll or pinch to zoom • Select a machine to inspect its shape</p>
+      </div>
+
+      <div class="real3d-grid">
+        <article class="real3d-card moon-real3d">
+          <div class="real3d-card-head">
+            <span class="real3d-tag moon-tag">MOON · APOLLO LUNAR MODULE</span>
+            <span class="real3d-source">NASA 3D Resources</span>
+          </div>
+          <div class="real3d-stage moon-stage">
+            <img alt="NASA Apollo 11 AS11-40-5927: Apollo Lunar Module on the lunar surface" class="ba-planet-preview ba-moon-preview" decoding="async" loading="eager" referrerpolicy="no-referrer" src="https://eol.jsc.nasa.gov/DatabaseImages/ISD/highres/AS11/AS11-40-5927.JPG"/>
+            <model-viewer alt="NASA Apollo Lunar Module 3D model" ar="false" auto-rotate="" camera-controls="" class="ba-lazy-3d-viewer" environment-image="neutral" exposure="1.15" id="apolloLanderModel" interaction-prompt="auto" loading="lazy" reveal="auto" rotation-per-second="12deg" shadow-intensity="1" src="https://assets.science.nasa.gov/content/dam/science/cds/3d/resources/model/apollo-lunar-module/Apollo%20Lunar%20Module.glb">
+              <div class="model-poster" slot="poster">Loading NASA Apollo Lunar Module 3D model…</div>
+            </model-viewer>
+          </div>
+          <button class="ba-load-3d-button ba-moon-load-button" data-planet="moon" onclick="toggleReal3DViewer(this)" type="button">◇  Load Moon 3D View</button>
+          <div class="real3d-card-copy">
+            <h3>Apollo Lunar Module</h3>
+            <p>Inspect the lunar landing spacecraft in an interactive 3D viewer. Drag to rotate, pinch to zoom and view it from different angles.</p>
+            <a href="https://science.nasa.gov/3d-resources/apollo-lunar-module/" rel="noopener" target="_blank">NASA model details ↗</a>
+          </div>
+        </article>
+
+        <article class="real3d-card mars-real3d">
+          <div class="real3d-card-head">
+            <span class="real3d-tag mars-tag">MARS · PERSEVERANCE</span>
+            <span class="real3d-source">NASA / JPL-Caltech</span>
+          </div>
+          <div class="real3d-stage mars-stage">
+            <img alt="Perseverance rover on the Martian surface" class="ba-planet-preview ba-mars-preview" loading="eager" src="assets/images/mars-perseverance-surface.jpg"/>
+            <iframe allow="fullscreen; xr-spatial-tracking" allowfullscreen="" class="ba-lazy-3d-viewer" loading="lazy" src="https://mars.nasa.gov/gltf_embed/25042" title="NASA interactive 3D model of the Perseverance Mars rover"></iframe>
+          </div>
+          <button class="ba-load-3d-button ba-mars-load-button" data-planet="mars" onclick="toggleReal3DViewer(this)" type="button">◇  Load Mars 3D View</button>
+          <div class="real3d-card-copy">
+            <h3>Perseverance Mars Rover</h3>
+            <p>Explore the real NASA 3D rover model. Drag inside the viewer to rotate it and inspect its engineering design.</p>
+            <a href="https://science.nasa.gov/3d-resources/mars-2020-perseverance-rover/" rel="noopener" target="_blank">NASA model details ↗</a>
+          </div>
+        </article>
+      </div>
+      <div class="real3d-note">NASA 3D assets are loaded from NASA-hosted resources. A working internet connection is required.</div>
+    </section>
+
+    <!-- INTERACTIVE HARDWARE STEP LAB -->
+    <section aria-labelledby="stepLabTitle" class="hardware-step-lab" id="hardware-step-lab">
+      <div class="step-lab-heading ba-lab-intro">
+        <div class="ba-lab-intro-copy">
+          <span class="ba-lab-eyebrow">INTERACTIVE HARDWARE LAB · NASA MISSIONS</span>
+          <button aria-controls="baLabFullContent" aria-expanded="false" class="ba-lab-title-trigger" id="baLabToggle" type="button">
+            <span id="stepLabTitle">Explore each machine, <em>step by step.</em></span>
+          </button>
+          <p>Select a world and discover the engineering behind the machines that landed, travelled and explored beyond Earth.</p>
+          <div class="ba-lab-intro-tags">
+            <span>🌕 MOON · APOLLO 11</span>
+            <span>🔴 MARS · PERSEVERANCE</span>
+          </div>
+        </div>
+        <div aria-hidden="true" class="ba-lab-planet-art">
+          <div class="ba-orbit ba-orbit-one"></div>
+          <div class="ba-orbit ba-orbit-two"></div>
+          <div class="ba-planet ba-moon-planet"></div>
+          <div class="ba-planet ba-mars-planet"></div>
+          <span class="ba-planet-label ba-moon-label">MOON</span>
+          <span class="ba-planet-label ba-mars-label">MARS</span>
+          <span class="ba-lab-art-caption">TWO WORLDS · ONE MISSION</span>
+        </div>
+      </div>
+
+      <div class="ba-lab-hidden-content" hidden="" id="baLabFullContent">
+        <div aria-label="NASA Moon landing and Mars rover landing videos" class="lab-world-previews">
+          <article class="lab-world-preview lab-moon-preview lab-mission-video-card">
+            <div class="lab-preview-label">MOON · APOLLO 11 LUNAR LANDING <span>NASA ARCHIVE</span></div>
+            <div class="lab-preview-model lab-video-frame">
+              <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/nOcDftgR5UQ?autoplay=1&amp;mute=1&amp;controls=1&amp;loop=1&amp;playlist=nOcDftgR5UQ&amp;playsinline=1&amp;rel=0" title="NASA Apollo 11 lunar module landing video"></iframe>
+            </div>
+            <p>Watch the Apollo 11 Lunar Module descend and land on the Moon. <a href="https://www.youtube.com/watch?v=nOcDftgR5UQ" rel="noopener" target="_blank">Open NASA video ↗</a></p>
+          </article>
+          <article class="lab-world-preview lab-mars-preview lab-mission-video-card">
+            <div class="lab-preview-label">MARS · PERSEVERANCE ROVER LANDING <span>NASA / JPL</span></div>
+            <div class="lab-preview-model lab-video-frame">
+              <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/4czjS9h4Fpg?autoplay=1&amp;mute=1&amp;controls=1&amp;loop=1&amp;playlist=4czjS9h4Fpg&amp;playsinline=1&amp;rel=0" title="NASA Perseverance rover descent and touchdown video"></iframe>
+            </div>
+            <p>See the real descent, sky-crane sequence and touchdown on Mars. <a href="https://www.youtube.com/watch?v=4czjS9h4Fpg" rel="noopener" target="_blank">Open NASA video ↗</a></p>
+          </article>
+        </div>
+
+        <div class="step-lab-shell">
+          <div aria-label="Choose hardware destination" class="step-lab-tabs" role="tablist">
+            <button aria-selected="true" class="step-planet-tab active" data-planet="mars" role="tab" type="button">🔴 Mars Rover</button>
+            <button aria-selected="false" class="step-planet-tab" data-planet="moon" role="tab" type="button">🌕 Moon Lander</button>
+          </div>
+          <div class="step-lab-content">
+            <div class="step-lab-visual mars-lab-visual" id="stepLabVisual">
+              <iframe allow="fullscreen; xr-spatial-tracking" allowfullscreen="" class="step-real3d-frame" id="stepMars3D" loading="lazy" src="https://mars.nasa.gov/gltf_embed/25042" title="Interactive NASA Perseverance rover 3D model"></iframe>
+              <model-viewer alt="Interactive NASA Apollo Lunar Module 3D model" auto-rotate="" camera-controls="" class="step-real3d-model" environment-image="neutral" exposure="1.15" id="stepMoon3D" interaction-prompt="auto" loading="lazy" reveal="auto" rotation-per-second="10deg" shadow-intensity="1" src="https://assets.science.nasa.gov/content/dam/science/cds/3d/resources/model/apollo-lunar-module/Apollo%20Lunar%20Module.glb"></model-viewer>
+              <div aria-live="polite" class="step-selected-part" id="stepSelectedPart">
+                <span class="step-selected-dot"></span>
+                <span><small>NOW EXPLORING</small><strong id="stepSelectedPartName">Wheels &amp; Mobility System</strong></span>
+                <b id="stepSelectedPartNumber">01</b>
+              </div>
+              <div class="step-visual-caption" id="stepVisualCaption">PERSEVERANCE · MARS SURFACE</div>
+            </div>
+            <div class="step-lab-info">
+              <div class="step-progress-line"><span id="stepProgressLabel">STEP 1 OF 6</span><span id="stepProgressTrack"><i style="width:16.66%"></i></span></div>
+              <h3 id="stepPartTitle">Wheels &amp; Mobility System</h3>
+              <p id="stepPartDescription">Six aluminium wheels help Perseverance travel across rough Martian terrain. Its suspension system helps keep the rover stable while climbing over rocks.</p>
+              <div class="step-lab-controls">
+                <button disabled="" id="stepPrev" type="button">← Previous</button>
+                <button id="stepNext" type="button">Next component →</button>
+              </div>
+              <div aria-label="Choose component step" class="step-lab-dots" id="stepLabDots"></div>
+            </div>
+          </div>
+          <div class="step-lab-footnote">Rotate and zoom the NASA 3D machine while the selected-part indicator follows each step. The callout identifies the component being explained; the NASA viewer shows the complete machine rather than isolating individual internal parts.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRESSIVE MARS SECTION -->
+    <section class="progressive-section" id="mars">
+      <div class="progressive-panel">
+        <div class="progressive-head">
+          <div>
+            <h2>🔴 Mars Exploration</h2>
+            <p>Follow the machines from landing to science.</p>
+          </div>
+          <span class="progressive-count">STEP 1 → 4</span>
+        </div>
+        <div class="progressive-tabs" id="marsTabs">
+          <button class="progressive-tab active" onclick="showPlanetStep('mars',1)">01 • Overview</button>
+          <button class="progressive-tab" onclick="showPlanetStep('mars',2)">02 • Hardware</button>
+          <button class="progressive-tab" onclick="showPlanetStep('mars',3)">03 • How It Works</button>
+          <button class="progressive-tab" onclick="showPlanetStep('mars',4)">04 • See Video</button>
+        </div>
+        <div class="progressive-content" id="marsFlowContent"></div>
+      </div>
+    </section>
+
+    <!-- PROGRESSIVE MOON SECTION -->
+    <section class="progressive-section" id="moon">
+      <div class="progressive-panel">
+        <div class="progressive-head">
+          <div>
+            <h2>🌕 Moon Exploration</h2>
+            <p>Start small — reveal the lunar story step by step.</p>
+          </div>
+          <span class="progressive-count">STEP 1 → 4</span>
+        </div>
+        <div class="progressive-tabs" id="moonTabs">
+          <button class="progressive-tab active" onclick="showPlanetStep('moon',1)">01 • Overview</button>
+          <button class="progressive-tab" onclick="showPlanetStep('moon',2)">02 • Hardware</button>
+          <button class="progressive-tab" onclick="showPlanetStep('moon',3)">03 • How It Works</button>
+          <button class="progressive-tab" onclick="showPlanetStep('moon',4)">04 • See Video</button>
+        </div>
+        <div class="progressive-content" id="moonFlowContent"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 3D Planet Viewer Dialog -->
+  <div aria-hidden="true" aria-labelledby="planetViewerTitle" aria-modal="true" class="planet-viewer" id="planetViewer" role="dialog">
+    <button aria-label="Close 3D planet viewer" class="planet-viewer-close" onclick="closePlanetViewer()">×</button>
+    <div aria-hidden="true" class="planet-viewer-stars"></div>
+    <div class="planet-viewer-copy">
+      <div class="planet-viewer-kicker">BEYOND ATLAS · INTERACTIVE WORLD</div>
+      <h2 id="planetViewerTitle">THE MOON</h2>
+      <p id="planetViewerDesc">Explore the world, then discover the machines that helped us reach it.</p>
+      <div class="planet-viewer-facts" id="planetViewerFacts"></div>
+      <button class="planet-viewer-explore" id="planetViewerExplore" onclick="explorePlanetHardware()">Explore related hardware ↗</button>
+    </div>
+    <div class="planet-viewer-world" id="planetViewerWorld">
+      <div class="planet-viewer-globe" id="planetViewerGlobe"></div>
+      <div class="planet-orbit-ring"></div>
+      <span class="planet-viewer-caption">DRAG NOT REQUIRED · SLOW ROTATION</span>
+    </div>
+  </div>
+
+  <!-- Common Modals -->
+  <!-- HARDWARE MODAL WITH REAL NASA HARDWARE PHOTO -->
+  <div class="modal" id="hwModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">×</span>
+      <h2 id="mTitle" style="color:var(--neon-blue); font-size:22px; font-family:'Orbitron',sans-serif; margin-bottom:6px;"></h2>
+      <div id="mSub" style="font-size:12px; color:var(--orange); font-weight:800; margin-bottom:16px;"></div>
+      <div class="modal-hardware-photo-wrap" id="modalPhotoWrap" style="display:none;">
+        <img alt="NASA hardware photo" class="modal-hardware-photo" decoding="async" id="modalHardwarePhoto" loading="lazy"/>
+        <div class="modal-photo-credit">NASA ARCHIVE • REAL HARDWARE PHOTO</div>
+        <div class="hardware-key-parts" id="hardwareKeyParts">
+          <strong>EXPLORE THE MAIN PARTS</strong>
+          <div class="hardware-part-points" id="hardwarePartPoints"></div>
+          <p class="hardware-part-hint">Select a marker to learn what that component does.</p>
+        </div>
+      </div>
+      <div class="hw-360-panel" id="hw360Panel">
+        <div class="hw-360-heading"><strong>360° HARDWARE INSPECTION</strong><span>Drag the image or use the controls to inspect the mission machine</span></div>
+        <div class="hw-360-stage" id="hw360Stage">
+          <img alt="Interactive hardware inspection image" decoding="async" draggable="false" id="hw360Image" loading="lazy"/>
+          <span class="hw-360-hint">DRAG TO ROTATE VIEW</span>
+        </div>
+        <div class="hw-360-controls">
+          <button onclick="rotateHardwareView(-18)" type="button">↶ Rotate</button>
+          <input aria-label="Rotate hardware view" id="hw360Slider" max="180" min="-180" type="range" value="0"/>
+          <button onclick="rotateHardwareView(18)" type="button">Rotate ↷</button>
+          <button onclick="resetHardwareView()" type="button">Reset</button>
+        </div>
+        <div class="hw-360-note">Interactive photo inspection view. A true photogrammetry/GLB model is needed for an authentic all-angle 3D hardware model.</div>
+      </div>
+      <div class="modal-overview" id="mOverview"><strong>QUICK OVERVIEW</strong><span></span></div>
+      <div class="modal-status-strip">
+        <div class="modal-status-chip"><span>MISSION STATUS</span><strong id="mStatus">—</strong></div>
+        <div class="modal-status-chip"><span>USABLE TODAY?</span><strong id="mUsable">—</strong></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="modalVideoBtn" type="button">▶ See Video</button>
+        <button class="btn btn-primary" id="modalLiveSearchBtn">🌐 Live NASA Archive Search</button>
+        <button class="btn btn-outline" id="modalListenBtn" onclick="listenModalContent()">🔊 Listen &amp; Mark</button>
+      </div>
+      <div class="modal-grid">
+        <div class="modal-field"><label>🚀 Mission &amp; Launch Details</label><p id="mMission"></p></div>
+        <div class="modal-field"><label>📍 Exact Landing Coordinates</label><p id="mLoc"></p></div>
+        <div class="modal-field"><label>🎯 Operational Purpose</label><p id="mPurpose"></p></div>
+        <div class="modal-field"><label>⚙️ Detailed Mechanical Engineering</label><p id="mHow"></p></div>
+        <div class="modal-field"><label>📖 Current Modern Status</label><p id="mHappened"></p></div>
+        <div class="modal-field"><label>🛑 Structural Reason Left Behind</label><p id="mWhy"></p></div>
+        <div class="modal-field" style="grid-column: 1 / -1; border-left-color:var(--green);"><label>🔬 Enduring Scientific Legacy</label><p id="mScience"></p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HARDWARE VIDEO MODAL -->
+  <div class="modal" id="hardwareVideoModal">
+    <div class="modal-content" style="max-width:920px;">
+      <span class="close-modal" onclick="closeHardwareVideo()">×</span>
+      <div id="videoModalSub" style="font-size:10px;color:var(--orange);font-family:'Orbitron',sans-serif;font-weight:800;margin-bottom:6px;">NASA / JPL VIDEO</div>
+      <h2 id="videoModalTitle" style="color:var(--neon-blue);font-size:20px;font-family:'Orbitron',sans-serif;margin-bottom:13px;"></h2>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="modal-video-frame" id="hardwareVideoFrame" loading="lazy" title="NASA hardware video"></iframe>
+      <div class="modal-video-panel">
+        <div class="modal-video-title">💡 What to notice</div>
+        <div id="videoModalDescription" style="color:#cbd5e1;font-size:12px;line-height:1.6;"></div>
+      </div>
+      <div style="margin-top:10px;text-align:center;color:#64748b;font-size:10px;">🎬 Video plays directly inside BEYOND ATLAS</div>
+    </div>
+  </div>
+
+  <!-- TEAM MODAL -->
+  <div class="modal" id="teamModal">
+    <div class="modal-content" style="max-width:580px;">
+      <span class="close-modal" onclick="closeTeamModal()">×</span>
+      <h2 style="color:var(--neon-blue);font-size:22px;font-family:'Orbitron',sans-serif;text-align:center;margin-bottom:5px;">🚀 TEAM <span style="color:#ffffff !important;">ASTRO</span><span style="color:var(--neon-blue) !important;">FORGE</span></h2>
+      <p style="text-align:center;color:#9fb4c9;font-size:12px;margin-bottom:18px;">The people behind “Left Behind, Not Forgotten”</p>
+      <div class="team-leader-center">
+        <div style="font-size:10px;letter-spacing:1.5px;color:#8be7ff;font-weight:800;margin-bottom:7px;">TEAM LEADER</div>
+        <h3>Roni Das</h3>
+        <p>TEAM LEADER &amp; DEVELOPER</p>
+        <div class="team-contribution">Project coordination, website development, interactive experience and overall project direction.</div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--orange);font-weight:800;margin:4px 0 12px;letter-spacing:1.2px;font-family:'Orbitron',sans-serif;">TEAM MEMBERS</div>
+      <div class="team-members-grid">
+        <div class="team-member-card"><strong>Sajid Mahmud</strong><span style="font-size:12px;color:var(--text-muted)">Content Writer</span><div class="team-contribution">Research, mission information and student-friendly storytelling.</div></div>
+        <div class="team-member-card"><strong>Md. Milon Sarker</strong><span style="font-size:12px;color:var(--text-muted)">Space Science &amp; Physics</span><div class="team-contribution">Scientific concepts, space hardware context and physics accuracy.</div></div>
+        <div class="team-member-card"><strong>Sanchari Karmakar</strong><span style="font-size:12px;color:var(--text-muted)">UI/UX &amp; Illustrator</span><div class="team-contribution">Visual design, interface layout and illustrations.</div></div>
+        <div class="team-member-card"><strong>Jobair Ahmed</strong><span style="font-size:12px;color:var(--text-muted)">Animator &amp; Voice Artist</span><div class="team-contribution">Animation, visual storytelling and voice presentation.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer aria-label="Beyond Atlas footer" class="atlas-footer-row">
+    <p class="atlas-footer-item">Built with curiosity, teamwork &amp; a passion for space exploration.</p>
+    <button class="team-simple-btn atlas-footer-item" onclick="openTeamModal()">🚀 TEAM ASTROFORGE · Meet the Team</button>
+    <div aria-live="polite" class="local-visit-counter global-visit-counter atlas-footer-item">
+      <span>✦ TOTAL EXPLORER VIEWS</span>
+      <strong id="localVisitCount">Connecting…</strong>
+      <small>worldwide</small>
+    </div>
+    <a aria-label="Back to top" class="back-to-top atlas-footer-item" href="#real-3d-hardware">↑  BACK TO TOP</a>
+  </footer>
+
+  <!-- Application Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/planet-viewer.js"></script>
+  <script src="js/shared-planet-engine.js"></script>
+  <script src="js/hardware-lab.js"></script>
+</body>
+</html>
+

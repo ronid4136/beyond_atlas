@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep-Space Hardware Archive & NASA Search — BEYOND ATLAS</title>
+
+  <!-- Preconnect Resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images-api.nasa.gov" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://images-assets.nasa.gov" crossorigin="anonymous" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/planets.css" />
+  <link rel="stylesheet" href="css/games.css" />
+  <link rel="stylesheet" href="css/theme-override.css" />
+  <link rel="stylesheet" href="css/beyond-theme.css" />
+</head>
+<body>
+  <div class="audience-banner">🚀 NASA SPACE APPS CHALLENGE · "LEFT BEHIND, NOT FORGOTTEN" · TEAM ASTROFORGE</div>
+
+  <!-- Main Navigation Header -->
+  <header>
+    <a aria-label="BEYOND ATLAS — Back to homepage" class="logo atlas-brand atlas-home-link" href="index.html">
+      <span aria-hidden="true" class="atlas-mark">
+        <svg viewbox="0 0 52 52">
+          <circle cx="26" cy="26" fill="none" r="17" stroke="#8be7ff" stroke-width="2.2"></circle>
+          <ellipse cx="26" cy="26" fill="none" rx="23" ry="9" stroke="#f4b66a" stroke-width="2.1" transform="rotate(-32 26 26)"></ellipse>
+          <path d="M25 13l7 8-5 15-7-8z" fill="#8be7ff" stroke="#eafaff" stroke-width="1.2"></path>
+          <circle cx="26" cy="25" fill="#061426" r="2.5"></circle>
+          <path d="M19 32l-5 7 9-3M30 35l4 5 1-9" fill="none" stroke="#ffb66f" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </span>
+      <span class="atlas-word"><b>BEYOND</b><em>ATLAS</em></span>
+    </a>
+
+    <nav>
+      <a href="index.html#hero"><span>🌌</span><span>Orbit</span></a>
+      <a href="explore.html#moon"><span>🌕</span><span>Moon</span></a>
+      <a href="explore.html#mars"><span>🔴</span><span>Mars</span></a>
+      <a href="explore.html#real-3d-hardware"><span>🧊</span><span>3D View</span></a>
+      <a class="active" href="hardware.html"><span>🔧</span><span>Hardware</span></a>
+      <a href="timeline.html"><span>🚀</span><span>Timeline</span></a>
+      <a href="telemetry.html"><span>📡</span><span>Live Data</span></a>
+      <a href="index.html#game"><span>🎮</span><span>Game</span></a>
+      <a href="index.html#quiz"><span>🧠</span><span>Quiz</span></a>
+      <a class="active" href="hardware.html#archive"><span>🔍</span><span>Live Search</span></a>
+    </nav>
+
+    <div class="control-box">
+      <button class="audio-btn" id="audioToggleBtn" onclick="toggleGlobalAudio()">🔇 Voice: OFF</button>
+      <select class="lang-selector" id="langSelect">
+        <option value="en-US">English 🇺🇸</option>
+        <option value="bn-BD">বাংলা 🇧🇩</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Page Hero Banner -->
+  <div class="page-hero-banner">
+    <span class="beyond-eyebrow">NASA HISTORIC ARTIFACTS</span>
+    <h1>Deep-Space Hardware <span class="cyan">Archive</span> & Search</h1>
+    <p>Explore the machines left behind on planetary surfaces, inspect 360° photos, and run live searches against NASA's official image repositories.</p>
+    <div style="display:flex; justify-content:center; gap:12px; margin-top:18px;">
+      <a class="btn-cyan-pill" href="#hardwareGallery">Browse Hardware Gallery ↘</a>
+      <a class="btn-glass-pill" href="#archive">NASA Live Search ↘</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- HARDWARE IMAGE GALLERY -->
+    <section id="hardwareGallery" style="max-width:1320px; margin:0 auto 40px; padding:0 clamp(16px, 3vw, 30px); border-bottom:none;">
+      <div class="section-head" style="text-align:center; margin-bottom:28px;">
+        <span class="ba-section-badge">PLANETARY RELIC COLLECTION</span>
+        <h2 class="ba-section-title">🛰️ Deep-Space Hardware Gallery</h2>
+        <p class="ba-section-subtitle">Real NASA hardware images • Click any machine to open full specifications and status reports</p>
+      </div>
+
+      <div class="gallery-toolbar" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+        <span class="gallery-live"><span class="live-dot"></span> REAL NASA ARCHIVE IMAGES</span>
+        <button class="btn-cyan-pill" onclick="openAddHardwareModal()" type="button" style="padding:10px 20px;">➕ Add Custom Hardware</button>
+      </div>
+
+      <div class="hardware-gallery-grid" id="hardwareGalleryGrid"></div>
+    </section>
+
+    <!-- MASTER HARDWARE EXPLORER -->
+    <section class="progressive-section explorer-progressive" id="explorer" style="max-width:1320px; margin:0 auto 40px; padding:0 clamp(16px, 3vw, 30px);">
+      <div class="progressive-panel">
+        <div class="progressive-head">
+          <div>
+            <h2>🔧 Master Hardware Explorer</h2>
+            <p>Discover space hardware step by step — filter by mission target.</p>
+          </div>
+          <span class="progressive-count">STEP 1 → 4</span>
+        </div>
+        <div class="progressive-tabs" id="explorerTabs">
+          <button class="progressive-tab active" onclick="showExplorerStep(1)">01 • Choose</button>
+          <button class="progressive-tab" onclick="showExplorerStep(2)">02 • Hardware</button>
+          <button class="progressive-tab" onclick="showExplorerStep(3)">03 • How It Works</button>
+          <button class="progressive-tab" onclick="showExplorerStep(4)">04 • Watch</button>
+        </div>
+        <div class="progressive-content" id="explorerFlowContent"></div>
+      </div>
+    </section>
+
+    <!-- LIVE SEARCH ARCHIVE SECTION -->
+    <section id="archive" style="max-width:1320px; margin:0 auto 40px; padding:0 clamp(16px, 3vw, 30px);">
+      <div class="archive-highlight-box" style="background: radial-gradient(circle at center, rgba(0, 212, 255, 0.08) 0%, rgba(6, 11, 23, 0.95) 85%); border: 1.5px solid rgba(0, 212, 255, 0.35); border-radius: 20px; padding: clamp(20px, 3vw, 36px); box-shadow: 0 15px 40px rgba(0,0,0,0.5);">
+        <div class="section-head" style="margin-bottom:20px; text-align:center;">
+          <div style="margin-bottom:8px;">
+            <span class="live-indicator"><span class="live-dot"></span> LIVE NASA API DATABASE SEARCH</span>
+          </div>
+          <h2 style="font-family:'Space Grotesk','Orbitron',sans-serif; font-size:clamp(22px, 3vw, 32px); color:#ffffff; margin:6px 0;">Click & Search Hardware Photo</h2>
+          <p style="color:#94a3b8; font-size:14.5px;">Type any spacecraft, instrument or mission name to query live NASA photo archives instantly</p>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:12px; margin-bottom:24px; flex-wrap:wrap;">
+          <input id="nasaQuery" style="padding:12px 18px; border-radius:30px; border:1px solid rgba(255,255,255,0.18); background:rgba(10,18,36,0.85); color:#fff; width:100%; max-width:380px; font-size:14.5px; outline:none;" type="text" value="Apollo Retroreflector" />
+          <button class="btn-cyan-pill" id="liveSearchBtn" onclick="searchNASA()">🔴 Query Live NASA API</button>
+          <button class="btn-glass-pill" id="googleSearchBtn" onclick="openGoogleSearch()">🌐 Google Search</button>
+        </div>
+
+        <div class="hardware-grid" id="nasaResults"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ADD HARDWARE MODAL -->
+  <div class="modal" id="addHardwareModal">
+    <div class="modal-content add-hardware-content">
+      <span class="close-modal" onclick="closeAddHardwareModal()">×</span>
+      <h2 style="color:var(--neon-blue); font-family:'Orbitron',sans-serif; font-size:21px; margin-bottom:6px;">➕ Add Hardware</h2>
+      <p style="color:var(--text-muted); font-size:13px; margin-bottom:18px;">Add your own hardware and photo. Your custom hardware is saved in this browser and can be deleted later.</p>
+      <div class="add-hw-form">
+        <input id="addHwName" placeholder="Hardware name"/>
+        <select id="addHwTarget"><option value="moon">🌕 Moon</option><option value="mars">🔴 Mars</option></select>
+        <input id="addHwYear" placeholder="Year"/>
+        <input id="addHwMission" placeholder="Mission"/>
+        <input id="addHwImage" placeholder="Real image URL (optional)"/>
+        <div class="add-hw-file"><input accept="image/*" id="addHwImageFile" type="file"/></div>
+        <div class="add-hw-photo-note">You can use an image URL or upload a photo. Uploaded photos are compressed and saved in this browser.</div>
+        <textarea id="addHwSummary" placeholder="Short information"></textarea>
+      </div>
+      <button class="btn-cyan-pill" onclick="addCustomHardware()" style="width:100%; margin-top:14px; justify-content:center;">💾 Save Hardware</button>
+    </div>
+  </div>
+
+  <!-- HARDWARE MODAL WITH REAL NASA HARDWARE PHOTO -->
+  <div class="modal" id="hwModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">×</span>
+      <h2 id="mTitle" style="color:var(--neon-blue); font-size:22px; font-family:'Orbitron',sans-serif; margin-bottom:6px;"></h2>
+      <div id="mSub" style="font-size:12px; color:var(--orange); font-weight:800; margin-bottom:16px;"></div>
+      <div class="modal-hardware-photo-wrap" id="modalPhotoWrap" style="display:none;">
+        <img alt="NASA hardware photo" class="modal-hardware-photo" decoding="async" id="modalHardwarePhoto" loading="lazy"/>
+        <div class="modal-photo-credit">NASA ARCHIVE • REAL HARDWARE PHOTO</div>
+        <div class="hardware-key-parts" id="hardwareKeyParts">
+          <strong>EXPLORE THE MAIN PARTS</strong>
+          <div class="hardware-part-points" id="hardwarePartPoints"></div>
+          <p class="hardware-part-hint">Select a marker to learn what that component does.</p>
+        </div>
+      </div>
+      <div class="hw-360-panel" id="hw360Panel">
+        <div class="hw-360-heading"><strong>360° HARDWARE INSPECTION</strong><span>Drag the image or use the controls to inspect the mission machine</span></div>
+        <div class="hw-360-stage" id="hw360Stage">
+          <img alt="Interactive hardware inspection image" decoding="async" draggable="false" id="hw360Image" loading="lazy"/>
+          <span class="hw-360-hint">DRAG TO ROTATE VIEW</span>
+        </div>
+        <div class="hw-360-controls">
+          <button onclick="rotateHardwareView(-18)" type="button">↶ Rotate</button>
+          <input aria-label="Rotate hardware view" id="hw360Slider" max="180" min="-180" type="range" value="0"/>
+          <button onclick="rotateHardwareView(18)" type="button">Rotate ↷</button>
+          <button onclick="resetHardwareView()" type="button">Reset</button>
+        </div>
+        <div class="hw-360-note">Interactive photo inspection view. A true photogrammetry/GLB model is needed for an authentic all-angle 3D hardware model.</div>
+      </div>
+      <div class="modal-overview" id="mOverview"><strong>QUICK OVERVIEW</strong><span></span></div>
+      <div class="modal-status-strip">
+        <div class="modal-status-chip"><span>MISSION STATUS</span><strong id="mStatus">—</strong></div>
+        <div class="modal-status-chip"><span>USABLE TODAY?</span><strong id="mUsable">—</strong></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="modalVideoBtn" type="button">▶ See Video</button>
+        <button class="btn btn-primary" id="modalLiveSearchBtn">🌐 Live NASA Archive Search</button>
+        <button class="btn btn-outline" id="modalListenBtn" onclick="listenModalContent()">🔊 Listen &amp; Mark</button>
+      </div>
+      <div class="modal-grid">
+        <div class="modal-field"><label>🚀 Mission &amp; Launch Details</label><p id="mMission"></p></div>
+        <div class="modal-field"><label>📍 Exact Landing Coordinates</label><p id="mLoc"></p></div>
+        <div class="modal-field"><label>🎯 Operational Purpose</label><p id="mPurpose"></p></div>
+        <div class="modal-field"><label>⚙️ Detailed Mechanical Engineering</label><p id="mHow"></p></div>
+        <div class="modal-field"><label>📖 Current Modern Status</label><p id="mHappened"></p></div>
+        <div class="modal-field"><label>🛑 Structural Reason Left Behind</label><p id="mWhy"></p></div>
+        <div class="modal-field" style="grid-column: 1 / -1; border-left-color:var(--green);"><label>🔬 Enduring Scientific Legacy</label><p id="mScience"></p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HARDWARE VIDEO MODAL -->
+  <div class="modal" id="hardwareVideoModal">
+    <div class="modal-content" style="max-width:920px;">
+      <span class="close-modal" onclick="closeHardwareVideo()">×</span>
+      <div id="videoModalSub" style="font-size:10px;color:var(--orange);font-family:'Orbitron',sans-serif;font-weight:800;margin-bottom:6px;">NASA / JPL VIDEO</div>
+      <h2 id="videoModalTitle" style="color:var(--neon-blue);font-size:20px;font-family:'Orbitron',sans-serif;margin-bottom:13px;"></h2>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="modal-video-frame" id="hardwareVideoFrame" loading="lazy" title="NASA hardware video"></iframe>
+      <div class="modal-video-panel">
+        <div class="modal-video-title">💡 What to notice</div>
+        <div id="videoModalDescription" style="color:#cbd5e1;font-size:12px;line-height:1.6;"></div>
+      </div>
+      <div style="margin-top:10px;text-align:center;color:#64748b;font-size:10px;">🎬 Video plays directly inside BEYOND ATLAS</div>
+    </div>
+  </div>
+
+  <!-- TEAM MODAL -->
+  <div class="modal" id="teamModal">
+    <div class="modal-content" style="max-width:580px;">
+      <span class="close-modal" onclick="closeTeamModal()">×</span>
+      <h2 style="color:var(--neon-blue);font-size:22px;font-family:'Orbitron',sans-serif;text-align:center;margin-bottom:5px;">🚀 TEAM <span style="color:#ffffff !important;">ASTRO</span><span style="color:var(--neon-blue) !important;">FORGE</span></h2>
+      <p style="text-align:center;color:#9fb4c9;font-size:12px;margin-bottom:18px;">The people behind “Left Behind, Not Forgotten”</p>
+      <div class="team-leader-center">
+        <div style="font-size:10px;letter-spacing:1.5px;color:#8be7ff;font-weight:800;margin-bottom:7px;">TEAM LEADER</div>
+        <h3>Roni Das</h3>
+        <p>TEAM LEADER &amp; DEVELOPER</p>
+        <div class="team-contribution">Project coordination, website development, interactive experience and overall project direction.</div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--orange);font-weight:800;margin:4px 0 12px;letter-spacing:1.2px;font-family:'Orbitron',sans-serif;">TEAM MEMBERS</div>
+      <div class="team-members-grid">
+        <div class="team-member-card"><strong>Sajid Mahmud</strong><span style="font-size:12px;color:var(--text-muted)">Content Writer</span><div class="team-contribution">Research, mission information and student-friendly storytelling.</div></div>
+        <div class="team-member-card"><strong>Md. Milon Sarker</strong><span style="font-size:12px;color:var(--text-muted)">Space Science &amp; Physics</span><div class="team-contribution">Scientific concepts, space hardware context and physics accuracy.</div></div>
+        <div class="team-member-card"><strong>Sanchari Karmakar</strong><span style="font-size:12px;color:var(--text-muted)">UI/UX &amp; Illustrator</span><div class="team-contribution">Visual design, interface layout and illustrations.</div></div>
+        <div class="team-member-card"><strong>Jobair Ahmed</strong><span style="font-size:12px;color:var(--text-muted)">Animator &amp; Voice Artist</span><div class="team-contribution">Animation, visual storytelling and voice presentation.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer aria-label="Beyond Atlas footer" class="atlas-footer-row">
+    <p class="atlas-footer-item">Built with curiosity, teamwork &amp; a passion for space exploration.</p>
+    <button class="team-simple-btn atlas-footer-item" onclick="openTeamModal()">🚀 TEAM ASTROFORGE · Meet the Team</button>
+    <div aria-live="polite" class="local-visit-counter global-visit-counter atlas-footer-item">
+      <span>✦ TOTAL EXPLORER VIEWS</span>
+      <strong id="localVisitCount">Connecting…</strong>
+      <small>worldwide</small>
+    </div>
+    <a aria-label="Back to top" class="back-to-top atlas-footer-item" href="#hardwareGallery">↑  BACK TO TOP</a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/hardware-lab.js"></script>
+</body>
+</html>
+

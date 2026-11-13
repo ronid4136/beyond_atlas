@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Space Telemetry & Mission Tracking — BEYOND ATLAS</title>
+
+  <!-- Preconnect Resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://assets.science.nasa.gov" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://images-assets.nasa.gov" crossorigin="anonymous" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/planets.css" />
+  <link rel="stylesheet" href="css/games.css" />
+  <link rel="stylesheet" href="css/theme-override.css" />
+  <link rel="stylesheet" href="css/beyond-theme.css" />
+</head>
+<body>
+  <div class="audience-banner">🚀 NASA SPACE APPS CHALLENGE · "LEFT BEHIND, NOT FORGOTTEN" · TEAM ASTROFORGE</div>
+
+  <!-- Main Navigation Header -->
+  <header>
+    <a aria-label="BEYOND ATLAS — Back to homepage" class="logo atlas-brand atlas-home-link" href="index.html">
+      <span aria-hidden="true" class="atlas-mark">
+        <svg viewbox="0 0 52 52">
+          <circle cx="26" cy="26" fill="none" r="17" stroke="#8be7ff" stroke-width="2.2"></circle>
+          <ellipse cx="26" cy="26" fill="none" rx="23" ry="9" stroke="#f4b66a" stroke-width="2.1" transform="rotate(-32 26 26)"></ellipse>
+          <path d="M25 13l7 8-5 15-7-8z" fill="#8be7ff" stroke="#eafaff" stroke-width="1.2"></path>
+          <circle cx="26" cy="25" fill="#061426" r="2.5"></circle>
+          <path d="M19 32l-5 7 9-3M30 35l4 5 1-9" fill="none" stroke="#ffb66f" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </span>
+      <span class="atlas-word"><b>BEYOND</b><em>ATLAS</em></span>
+    </a>
+
+    <nav>
+      <a href="index.html#hero"><span>🌌</span><span>Orbit</span></a>
+      <a href="explore.html#moon"><span>🌕</span><span>Moon</span></a>
+      <a href="explore.html#mars"><span>🔴</span><span>Mars</span></a>
+      <a href="explore.html#real-3d-hardware"><span>🧊</span><span>3D View</span></a>
+      <a href="hardware.html"><span>🔧</span><span>Hardware</span></a>
+      <a href="timeline.html"><span>🚀</span><span>Timeline</span></a>
+      <a class="active" href="telemetry.html"><span>📡</span><span>Live Data</span></a>
+      <a href="index.html#game"><span>🎮</span><span>Game</span></a>
+      <a href="index.html#quiz"><span>🧠</span><span>Quiz</span></a>
+      <a href="hardware.html#archive"><span>🔍</span><span>Live Search</span></a>
+    </nav>
+
+    <div class="control-box">
+      <button class="audio-btn" id="audioToggleBtn" onclick="toggleGlobalAudio()">🔇 Voice: OFF</button>
+      <select class="lang-selector" id="langSelect">
+        <option value="en-US">English 🇺🇸</option>
+        <option value="bn-BD">বাংলা 🇧🇩</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Page Hero Banner -->
+  <div class="page-hero-banner">
+    <span class="beyond-eyebrow">NASA DEEP SPACE NETWORK</span>
+    <h1>Live Space <span class="cyan">Telemetry</span> & Tracking</h1>
+    <p>Real-time continuous planetary environmental tracking, deep-space communication links, and NASA Open Data telemetry.</p>
+  </div>
+
+  <main>
+    <!-- REALTIME TELEMETRY -->
+    <section id="telemetry" style="max-width:1320px; margin:0 auto 40px; padding:0 clamp(16px, 3vw, 30px); border-bottom:none;">
+      <div class="section-head" style="text-align:center; margin-bottom:28px;">
+        <span class="ba-section-badge">DEEP SPACE TELEMETRY</span>
+        <h2 class="ba-section-title">📡 Live Planetary Hardware Telemetry</h2>
+        <p class="ba-section-subtitle">Real-time continuous deep-space environmental and payload tracking from official NASA data sources</p>
+      </div>
+
+      <div class="telemetry-grid">
+        <div class="telemetry-card">
+          <div style="margin-bottom:8px;">
+            <span class="live-indicator"><span class="live-dot"></span> LIVE MOON RELIC</span>
+          </div>
+          <h3 style="font-family:'Orbitron',sans-serif; font-size:16px; color:var(--neon-blue); margin-bottom:10px;">🌕 Apollo LRRR Array</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Earth-Moon Distance: <strong id="liveMoonDist" style="color:var(--neon-blue)">384,402.18 km</strong></p>
+          <p style="font-size:14px; color:var(--text-muted); margin-top:4px;">Laser Pulse Return: <strong style="color:var(--green)">Active (Optic Clean)</strong></p>
+          <div style="margin-top:10px; font-size:11px; color:#38bdf8; border-top:1px dashed rgba(56,189,248,0.25); padding-top:6px;">
+            🛰️ Source: NASA JPL Horizons Ephemeris (Target: 301 / Moon)
+          </div>
+        </div>
+
+        <div class="telemetry-card">
+          <div style="margin-bottom:8px;">
+            <span class="live-indicator"><span class="live-dot"></span> LIVE MARS HARDWARE</span>
+          </div>
+          <h3 style="font-family:'Orbitron',sans-serif; font-size:16px; color:var(--orange); margin-bottom:10px;">🔴 Jezero Surface Station</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Surface Temp: <strong style="color:var(--orange)">-64.2°C</strong></p>
+          <p style="font-size:14px; color:var(--text-muted); margin-top:4px;">Ingenuity Battery: <strong style="color:var(--gold)">Solar Float (Idle)</strong></p>
+          <div style="margin-top:10px; font-size:11px; color:#fb923c; border-top:1px dashed rgba(251,146,60,0.25); padding-top:6px;">
+            🔬 Source: NASA Mars 2020 MEDA Atmospheric Science Suite
+          </div>
+        </div>
+
+        <div class="telemetry-card">
+          <div style="margin-bottom:8px;">
+            <span class="live-indicator"><span class="live-dot"></span> LIVE DEEP SPACE</span>
+          </div>
+          <h3 style="font-family:'Orbitron',sans-serif; font-size:16px; color:var(--purple); margin-bottom:10px;">🌌 Voyager 1 Link</h3>
+          <p style="font-size:14px; color:var(--text-muted);">Distance: <strong id="voyagerDist" style="color:var(--purple)">24,385,120,400 km</strong></p>
+          <p style="font-size:14px; color:var(--text-muted); margin-top:4px;">Signal Roundtrip: <strong style="color:var(--neon-blue)">22.5 Hours</strong></p>
+          <div style="margin-top:10px; font-size:11px; color:#c084fc; border-top:1px dashed rgba(192,132,252,0.25); padding-top:6px;">
+            📡 Source: NASA Deep Space Network (DSN) Interstellar Telemetry
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NASA EYES & ROMAN SPACE TELESCOPE LIVE VISUALIZERS -->
+    <section style="max-width:1320px; margin:0 auto 40px; padding:0 clamp(16px, 3vw, 30px);">
+      <div class="section-head" style="text-align:center; margin-bottom:28px;">
+        <span class="ba-section-badge">INTERACTIVE MISSION ENVIRONMENT</span>
+        <h2 class="ba-section-title">🛰️ Real-Time 3D Spacecraft Visualizers</h2>
+        <p class="ba-section-subtitle">Connect live telemetry to mission trajectories with NASA Eyes and Nancy Grace Roman Telescope tracking.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
+        <div style="background:rgba(10,18,36,0.75); border:1px solid rgba(0,212,255,0.3); border-radius:18px; padding:24px; backdrop-filter:blur(16px); box-shadow:0 15px 35px rgba(0,0,0,0.3);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span style="font-family:'Orbitron',sans-serif; font-size:11px; color:var(--neon-blue); font-weight:800; letter-spacing:1px;">NASA EYES REAL-TIME 3D</span>
+            <span style="color:#4ade80; font-size:11px; font-weight:700;">● LIVE FEED</span>
+          </div>
+          <h3 style="font-family:'Orbitron',sans-serif; font-size:18px; color:#ffffff; margin-bottom:8px;">NASA Eyes on the Solar System</h3>
+          <p style="color:#94a3b8; font-size:13.5px; line-height:1.6; margin-bottom:18px;">
+            Explore the exact mission trajectories and real orbital configurations of robotic spacecraft across the Solar System.
+          </p>
+          <button class="btn-cyan-pill" onclick="openEyesSpace()" type="button" style="width:100%; justify-content:center;">
+            👁 Open NASA Eyes View
+          </button>
+        </div>
+
+        <div style="background:rgba(10,18,36,0.75); border:1px solid rgba(192,132,252,0.35); border-radius:18px; padding:24px; backdrop-filter:blur(16px); box-shadow:0 15px 35px rgba(0,0,0,0.3);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span style="font-family:'Orbitron',sans-serif; font-size:11px; color:var(--ba-purple); font-weight:800; letter-spacing:1px;">INFRARED ASTROPHYSICS</span>
+            <span style="color:#c084fc; font-size:11px; font-weight:700;">● SUN-EARTH L2</span>
+          </div>
+          <h3 style="font-family:'Orbitron',sans-serif; font-size:18px; color:#ffffff; margin-bottom:8px;">Nancy Grace Roman Space Telescope</h3>
+          <p style="color:#94a3b8; font-size:13.5px; line-height:1.6; margin-bottom:18px;">
+            A flagship observatory built for wide-field dark energy research, exoplanet discoveries, and infrared sky surveys.
+          </p>
+          <button class="btn-cyan-pill" onclick="openRomanSpace()" type="button" style="width:100%; justify-content:center; background:#c084fc; box-shadow:0 0 25px rgba(192,132,252,0.4);">
+            🛰 Track Roman Space Telescope
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- NASA APOD OPEN DATA SECTION -->
+    <section style="max-width:1320px; margin:0 auto 40px; padding:0 clamp(16px, 3vw, 30px);">
+      <div style="background:rgba(10,18,36,0.75); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:clamp(20px, 3vw, 32px); backdrop-filter:blur(16px);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+          <span class="ba-section-badge" id="nasaApodDate">NASA OPEN DATA</span>
+          <span style="font-size:11px; color:#38bdf8;">LIVE FROM NASA APOD API</span>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; align-items:center;">
+          <img alt="NASA Astronomy Picture of the Day" id="nasaApodImage" style="width:100%; max-height:360px; object-fit:cover; border-radius:14px; border:1px solid rgba(255,255,255,0.15);" src="https://images-assets.nasa.gov/image/PIA12235/PIA12235~orig.jpg"/>
+          <div>
+            <h2 id="nasaApodHeading" style="font-family:'Space Grotesk','Orbitron',sans-serif; font-size:22px; color:#fff; margin-bottom:12px;">NASA Astronomy Picture of the Day</h2>
+            <p id="nasaApodText" style="color:#cbd5e1; font-size:14.5px; line-height:1.7; margin-bottom:18px;">Loading today’s featured astronomical discovery from NASA’s public scientific archive…</p>
+            <a class="btn-cyan-pill" href="https://science.nasa.gov/solar-system/" id="nasaApodLink" rel="noopener noreferrer" target="_blank">Read NASA source ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- NASA EYES / ROMAN SPACE MODALS -->
+  <div class="modal" id="spaceEyesModal">
+    <div class="modal-content space-live-modal">
+      <span class="close-modal" onclick="closeEyesSpace()">×</span>
+      <h2 style="color:var(--neon-blue);font-family:'Orbitron',sans-serif;font-size:20px;">👁 NASA Eyes on the Solar System</h2>
+      <p style="color:var(--text-muted);margin:6px 0 12px;">Real-time 3D mission visualization. NASA Eyes lets you explore the same mission environment behind this project — spacecraft, rovers, landing systems and other deep-space hardware in context.</p>
+      <iframe allowfullscreen="" class="space-eyes-frame" id="spaceEyesFrame" loading="lazy" src="about:blank" title="NASA Eyes on the Solar System"></iframe>
+      <div class="space-live-actions">
+        <button class="btn btn-primary" onclick="window.open('https://eyes.nasa.gov/apps/solar-system/','_blank','noopener,noreferrer')" type="button">🚀 Open NASA Eyes</button>
+        <button class="btn btn-outline" onclick="closeEyesSpace()" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="romanSpaceModal">
+    <div class="modal-content space-live-modal">
+      <span class="close-modal" onclick="closeRomanSpace()">×</span>
+      <h2 style="color:#c4b5fd;font-family:'Orbitron',sans-serif;font-size:20px;">🛰 Nancy Grace Roman Space Telescope</h2>
+      <p style="color:var(--text-muted);line-height:1.6;margin:8px 0;">Roman is part of the project’s space-hardware story: a real spacecraft designed for wide-field infrared astronomy. Use NASA Eyes to place the spacecraft in its mission environment and connect the hardware to where it operates.</p>
+      <div class="roman-live-card">
+        <div><span>MISSION</span><strong>Roman Space Telescope</strong></div>
+        <div><span>DESTINATION</span><strong>Sun-Earth L2</strong></div>
+        <div><span>MODE</span><strong>Interactive 3D tracking</strong></div>
+      </div>
+      <div class="space-live-actions">
+        <button class="btn btn-primary" onclick="openRomanEyes()" type="button">👁 Track Roman in NASA Eyes</button>
+        <a class="btn btn-outline" href="https://science.nasa.gov/mission/roman-space-telescope/" rel="noopener noreferrer" target="_blank">NASA Roman Mission</a>
+        <button class="btn btn-outline" onclick="closeRomanSpace()" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM MODAL -->
+  <div class="modal" id="teamModal">
+    <div class="modal-content" style="max-width:580px;">
+      <span class="close-modal" onclick="closeTeamModal()">×</span>
+      <h2 style="color:var(--neon-blue);font-size:22px;font-family:'Orbitron',sans-serif;text-align:center;margin-bottom:5px;">🚀 TEAM <span style="color:#ffffff !important;">ASTRO</span><span style="color:var(--neon-blue) !important;">FORGE</span></h2>
+      <p style="text-align:center;color:#9fb4c9;font-size:12px;margin-bottom:18px;">The people behind “Left Behind, Not Forgotten”</p>
+      <div class="team-leader-center">
+        <div style="font-size:10px;letter-spacing:1.5px;color:#8be7ff;font-weight:800;margin-bottom:7px;">TEAM LEADER</div>
+        <h3>Roni Das</h3>
+        <p>TEAM LEADER &amp; DEVELOPER</p>
+        <div class="team-contribution">Project coordination, website development, interactive experience and overall project direction.</div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--orange);font-weight:800;margin:4px 0 12px;letter-spacing:1.2px;font-family:'Orbitron',sans-serif;">TEAM MEMBERS</div>
+      <div class="team-members-grid">
+        <div class="team-member-card"><strong>Sajid Mahmud</strong><span style="font-size:12px;color:var(--text-muted)">Content Writer</span><div class="team-contribution">Research, mission information and student-friendly storytelling.</div></div>
+        <div class="team-member-card"><strong>Md. Milon Sarker</strong><span style="font-size:12px;color:var(--text-muted)">Space Science &amp; Physics</span><div class="team-contribution">Scientific concepts, space hardware context and physics accuracy.</div></div>
+        <div class="team-member-card"><strong>Sanchari Karmakar</strong><span style="font-size:12px;color:var(--text-muted)">UI/UX &amp; Illustrator</span><div class="team-contribution">Visual design, interface layout and illustrations.</div></div>
+        <div class="team-member-card"><strong>Jobair Ahmed</strong><span style="font-size:12px;color:var(--text-muted)">Animator &amp; Voice Artist</span><div class="team-contribution">Animation, visual storytelling and voice presentation.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer aria-label="Beyond Atlas footer" class="atlas-footer-row">
+    <p class="atlas-footer-item">Built with curiosity, teamwork &amp; a passion for space exploration.</p>
+    <button class="team-simple-btn atlas-footer-item" onclick="openTeamModal()">🚀 TEAM ASTROFORGE · Meet the Team</button>
+    <div aria-live="polite" class="local-visit-counter global-visit-counter atlas-footer-item">
+      <span>✦ TOTAL EXPLORER VIEWS</span>
+      <strong id="localVisitCount">Connecting…</strong>
+      <small>worldwide</small>
+    </div>
+    <a aria-label="Back to top" class="back-to-top atlas-footer-item" href="#telemetry">↑  BACK TO TOP</a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
+

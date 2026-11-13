@@ -3,6 +3,30 @@
  * NASA Space Apps Challenge
  */
 
+/* Mobile Navigation Toggle */
+window.toggleMobileNav = function () {
+  const nav = document.getElementById('mainNav');
+  const btn = document.getElementById('mobileNavToggle');
+  if (!nav) return;
+  const isOpen = nav.classList.toggle('mobile-open');
+  if (btn) btn.innerHTML = isOpen ? '✕' : '☰';
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.getElementById('mainNav');
+  if (nav) {
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('mobile-open')) {
+          nav.classList.remove('mobile-open');
+          const btn = document.getElementById('mobileNavToggle');
+          if (btn) btn.innerHTML = '☰';
+        }
+      });
+    });
+  }
+});
+
 /* ==========================================================================
    Part #5: script-5
    ========================================================================== */
@@ -1095,8 +1119,10 @@ function answerQuiz(selected) {
 function resetQuiz() { qIdx = 0; qScore = 0; document.getElementById('qScore').innerText = 0; renderQuiz(); }
 
 async function searchNASA() {
-    const query = document.getElementById('nasaQuery').value || 'Apollo Retroreflector';
     const box = document.getElementById('nasaResults');
+    if (!box) return;
+    const input = document.getElementById('nasaQuery');
+    const query = (input && input.value) ? input.value : 'Apollo Retroreflector';
     box.innerHTML = '<p style="color:var(--neon-blue); text-align:center; grid-column:1/-1;">🔴 LIVE SEARCH ACTIVE: Fetching NASA Archives...</p>';
 
     const matchedInternal = hardwareData.filter(h => h.name.toLowerCase().includes(query.toLowerCase()) || h.purpose.toLowerCase().includes(query.toLowerCase()));
@@ -1231,7 +1257,60 @@ window.onload = function() {
     renderQuiz();
     searchNASA();
     attachImageRecovery();
+    initReal3DButtons();
 };
+
+window.toggleReal3DViewer = function(btn) {
+  if (!btn) return;
+  const card = btn.closest('.real3d-card') || btn.parentElement;
+  if (!card) return;
+  const stage = card.querySelector('.real3d-stage');
+  if (!stage) return;
+  const preview = stage.querySelector('.ba-planet-preview');
+  const viewer = stage.querySelector('.ba-lazy-3d-viewer');
+  const planet = btn.dataset.planet || 'moon';
+  const isOpened = btn.dataset.opened === '1';
+
+  if (isOpened) {
+    if (viewer) {
+      viewer.classList.remove('ba-viewer-open');
+      viewer.style.setProperty('display', 'none', 'important');
+    }
+    if (preview) {
+      preview.classList.remove('ba-preview-hidden');
+      preview.style.setProperty('display', 'block', 'important');
+    }
+    btn.dataset.opened = '0';
+    btn.innerHTML = planet === 'moon' ? '◇  Load Moon 3D View' : '◇  Load Mars 3D View';
+  } else {
+    if (preview) {
+      preview.classList.add('ba-preview-hidden');
+      preview.style.setProperty('display', 'none', 'important');
+    }
+    if (viewer) {
+      viewer.classList.add('ba-viewer-open');
+      viewer.style.setProperty('display', 'block', 'important');
+      if (viewer.tagName && viewer.tagName.toLowerCase() === 'model-viewer') {
+        viewer.setAttribute('reveal', 'auto');
+        viewer.setAttribute('camera-controls', '');
+        viewer.setAttribute('auto-rotate', '');
+      } else if (viewer.tagName && viewer.tagName.toLowerCase() === 'iframe') {
+        if (!viewer.src || viewer.src === 'about:blank') {
+          viewer.src = 'https://mars.nasa.gov/gltf_embed/25042';
+        }
+      }
+    }
+    btn.dataset.opened = '1';
+    btn.innerHTML = '↶  Show Photo';
+  }
+};
+
+function initReal3DButtons() {
+  document.querySelectorAll('.ba-load-3d-button').forEach(btn => {
+    btn.onclick = function() { window.toggleReal3DViewer(this); };
+  });
+}
+document.addEventListener('DOMContentLoaded', initReal3DButtons);
 
 /* ==========================================================================
    Part #8: beyond-atlas-nasa-open-data
