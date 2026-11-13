@@ -63,9 +63,17 @@ function listenModalContent() {
         if(btn) btn.click();
         return;
     }
-    const title = document.getElementById('mTitle')?.innerText || '';
-    const purpose = document.getElementById('mPurpose')?.innerText || '';
-    speakText(`${title}. Purpose: ${purpose}`);
+    const currentId = document.getElementById('hwModal')?.dataset?.currentHwId;
+    const isBn = currentSpeechLang().startsWith('bn');
+    const item = hardwareData.find(h => h.id === currentId);
+
+    if (isBn && item && item.narrationBn) {
+        speakText(item.narrationBn);
+    } else {
+        const title = document.getElementById('mTitle')?.innerText || '';
+        const purpose = document.getElementById('mPurpose')?.innerText || '';
+        speakText(`${title}. Operational Purpose: ${purpose}`);
+    }
     const purposeEl = document.getElementById('mPurpose');
     if(purposeEl){ purposeEl.classList.add('highlight-text'); setTimeout(()=>purposeEl.classList.remove('highlight-text'),1500); }
 }
@@ -106,7 +114,8 @@ const hardwareData = [
         how: "Constructed with an aerospace-grade aluminum panel housing 100 precision quartz corner-cube prisms that bounce incoming light directly back to its exact source regardless of angle of incidence.",
         happened: "Fully operational today after over 5 decades of continuous exposure to harsh lunar vacuum and thermal extremes, continuously receiving laser pulses from global ranging facilities.",
         why: "Passive optical architecture requiring zero electrical power, designed for indefinite standalone deployment without battery maintenance.",
-        science: "Proved conclusively that the Moon has a molten liquid outer core, confirmed Einstein's Theory of General Relativity with unprecedented precision, and mapped complex lunar orbital secular acceleration dynamics."
+        science: "Proved conclusively that the Moon has a molten liquid outer core, confirmed Einstein's Theory of General Relativity with unprecedented precision, and mapped complex lunar orbital secular acceleration dynamics.",
+        narrationBn: "অ্যাপোলো ১১ লেজার রেট্রোরিফ্লেক্টর। এটি ১৯৬৯ সালে চাঁদের প্রশান্তি সাগরে স্থাপিত ১০০টি কোয়ার্টজ প্রিজম বিশিষ্ট প্যাসিভ অপটিক্যাল যন্ত্র। কোনো ব্যাটারি বা বিদ্যুৎ ছাড়াই এটি পৃথিবী থেকে পাঠানো লেজার রশ্মি প্রতিফলিত করে চাঁদ ও পৃথিবীর দূরত্ব মিলিমিটার নির্ভুলতায় নির্ণয় করে এবং আজ ৫০ বছর পরেও সম্পূর্ণ সচল রয়েছে।"
     },
     {
         id: "apollo15-lrv",
@@ -121,7 +130,8 @@ const hardwareData = [
         how: "Built with a foldable 2219 aluminum alloy chassis, silver-zinc potassium hydroxide non-rechargeable batteries, independent solid-rotor wheel drive motors, and a T-bar steering controller.",
         happened: "Parked permanently at Hadley Base after successfully logging 27.9 kilometers across extremely rugged, boulder-strewn volcanic highlands.",
         why: "Ascent Module weight restrictions and strict payload capacity constraints on the lunar module descent stage mandated abandoning the vehicle.",
-        science: "Revolutionized off-world rover engineering, establishing baseline parameters for thermal vacuum mobility, dust mitigation, and electric drive endurance in low gravity."
+        science: "Revolutionized off-world rover engineering, establishing baseline parameters for thermal vacuum mobility, dust mitigation, and electric drive endurance in low gravity.",
+        narrationBn: "লুনার রোভিং ভেহিকেল এলআরভি-১। ১৯৭১ সালে অ্যাপোলো ১৫ মিশনে ব্যবহৃত চাঁদের প্রথম চার চাকার বৈদ্যুতিক যান। এটি মহাকাশচারীদের ২৭.৯ কিলোমিটার পথ পাড়ি দিতে এবং হাডলি রিল ও আগ্নেয়গিরি এলাকায় মূল্যবান ভূতাত্ত্বিক নমুনা সংগ্রহ করতে সক্ষম করেছিল।"
     },
     {
         id: "ingenuity",
@@ -137,7 +147,8 @@ const hardwareData = [
         how: "Dual counter-rotating carbon-fiber composite blades spinning at approximately 2,400 RPM powered by high-efficiency solar-recharged lithium-ion cells and autonomous inertial navigation.",
         happened: "Completed 72 historic flights over 3 Earth years before sustaining carbon-fiber rotor tip damage during a hard descent landing.",
         why: "Mission lifetime and mechanical stress limits exceeded by over 300 percent before hardware blade fracture permanently halted further aerial scouting hops.",
-        science: "Proved definitively that powered planetary aerial reconnaissance is completely viable and highly effective on thin-atmosphere terrestrial worlds, opening new paradigms for planetary exploration."
+        science: "Proved definitively that powered planetary aerial reconnaissance is completely viable and highly effective on thin-atmosphere terrestrial worlds, opening new paradigms for planetary exploration.",
+        narrationBn: "ইনজেনুইটি মার্স হেলিকপ্টার। ২০২১ সালে মঙ্গলের অতি পাতলা বায়ুমণ্ডলে প্রথম নিয়ন্ত্রিত ও চালিত উড্ডয়ন প্রদর্শনকারী রোবটিক ড্রোন। এটি জেজেরো ক্রেটারে ৭২টি ঐতিহাসিক ফ্লাইট সফলভাবে সম্পন্ন করে অন্য গ্রহে ড্রোন উড্ডয়নের নতুন যুগের সূচনা করেছে।"
     },
     {
         id: "skycrane",
@@ -153,7 +164,8 @@ const hardwareData = [
         how: "Fully autonomous descent stage equipped with throttleable hydrazine monopropellant rocket engines, radar altimeters, and high-strength nylon bridle lowering cables.",
         happened: "Executed a programmed controlled flyaway maneuver immediately after payload deployment, safely impacting the Martian surface 650 meters away from the rover.",
         why: "Single-use landing infrastructure designed deliberately to sacrifice itself upon payload touchdown release.",
-        science: "Pioneered heavy-payload entry descent landing mechanics which laid the essential technical foundation utilized for subsequent massive Mars rover and hardware payloads."
+        science: "Pioneered heavy-payload entry descent landing mechanics which laid the essential technical foundation utilized for subsequent massive Mars rover and hardware payloads.",
+        narrationBn: "এমএসএল কিউরিওসিটি স্কাই ক্রেন সিস্টেম। ২০১২ সালে ৯০০ কেজি ওজনের কিউরিওসিটি রোভারকে ধূলিঝড় সৃষ্টি না করে নিরাপদভাবে রকেট থ্রাস্টারের সাহায্যে মঙ্গলের গেল ক্রেটারে নামিয়ে দেয় এবং স্বয়ংক্রিয়ভাবে ৬৫০ মিটার দূরে ক্র্যাশ ল্যান্ডিং করে।"
     },
     {
         id: "apollo17-lrv",
@@ -168,7 +180,8 @@ const hardwareData = [
         how: "A lightweight electric rover with four independently driven wheels, steering, wire-mesh wheels, batteries, navigation equipment, and a foldable chassis.",
         happened: "Used by astronauts Eugene Cernan and Harrison Schmitt during Apollo 17 surface excursions and left at the landing site after the mission.",
         why: "The rover was designed as surface mobility hardware and was not intended to return to Earth with the lunar module ascent stage.",
-        science: "Enabled longer traverses and helped astronauts investigate the Taurus-Littrow Valley, including sampling and field observations beyond walking range."
+        science: "Enabled longer traverses and helped astronauts investigate the Taurus-Littrow Valley, including sampling and field observations beyond walking range.",
+        narrationBn: "অ্যাপোলো ১৭ লুনার রোভিং ভেহিকেল এলআরভি-৩। ১৯৭২ সালে টরাস-লিট্রো উপত্যকায় দীর্ঘ ৩৫ কিলোমিটার ভূতাত্ত্বিক পরিভ্রমণ করতে ও চাঁদের বিরল কমলা মাটির নমুনা সংগ্রহ করতে মহাকাশচারী ইউজিন সারনেন ও হ্যারিসন স্মিট এটি ব্যবহার করেছিলেন।"
     },
     {
         id: "apollo14-lr3",
@@ -183,7 +196,8 @@ const hardwareData = [
         how: "A panel containing precision corner-cube reflectors uses optical geometry to send incoming laser light back toward the observing station.",
         happened: "Remains on the lunar surface and is part of the long-running lunar laser-ranging experiment.",
         why: "It is a passive scientific instrument intended to remain at the lunar site for long-term measurements.",
-        science: "Supports measurements of lunar orbit, Earth-Moon dynamics, and tests of gravitational physics using extremely precise timing."
+        science: "Supports measurements of lunar orbit, Earth-Moon dynamics, and tests of gravitational physics using extremely precise timing.",
+        narrationBn: "অ্যাপোলো ১৪ লেজার রেঞ্জিং রেট্রোরিফ্লেক্টর। ১৯৭১ সালে ফ্রা মাওরো অঞ্চলে স্থাপিত প্যাসিভ লেজার রিফ্লেক্টর যা আইনস্টাইনের সাধারণ আপেক্ষিকতা তত্ত্ব এবং চাঁদের মহাকর্ষীয় কক্ষপথের সূক্ষ্ম পরিবর্তন পরিমাপে বিজ্ঞানীদের সাহায্য করে চলেছে।"
     },
     {
         id: "apollo11-eagle",
@@ -198,7 +212,8 @@ const hardwareData = [
         how: "A two-stage spacecraft used a descent propulsion system for landing and an ascent stage for returning the astronauts to lunar orbit.",
         happened: "The descent stage remains at the Apollo 11 landing site while the ascent stage departed the Moon.",
         why: "Only the ascent stage was required for the return to lunar orbit; the descent stage was left on the Moon as part of the mission architecture.",
-        science: "The vehicle enabled the first human lunar surface operations and deployment of early Apollo scientific experiments."
+        science: "The vehicle enabled the first human lunar surface operations and deployment of early Apollo scientific experiments.",
+        narrationBn: "অ্যাপোলো ১১ লুনার মডিউল ঈগল। ১৯৬৯ সালের ২০ জুলাই নীল আর্মস্ট্রং এবং বাজ অলড্রিনকে নিয়ে চাঁদের বুকে প্রথম মানব অবতরণকারী ঐতিহাসিক মহাকাশযান। যার ডিসেন্ট স্টেজ আজ চাঁদের প্রশান্তি সাগরে মানব ইতিহাসের চিরন্তন নিদর্শন হিসেবে অবস্থান করছে।"
     },
     {
         id: "curiosity-rover",
@@ -213,7 +228,8 @@ const hardwareData = [
         how: "Uses six-wheel rocker-bogie mobility, a robotic arm, drill and sample-handling hardware, cameras, spectrometers, and a radioisotope power system.",
         happened: "Landed in Gale Crater in August 2012 and continues surface science operations with its mission extended through NASA programs.",
         why: "Curiosity is a surface science rover designed for long-duration operation on Mars rather than return to Earth.",
-        science: "Its measurements have documented ancient aqueous environments and helped reconstruct the geological and environmental history of Gale Crater."
+        science: "Its measurements have documented ancient aqueous environments and helped reconstruct the geological and environmental history of Gale Crater.",
+        narrationBn: "মার্স সায়েন্স ল্যাবরেটরি কিউরিওসিটি রোভার। ২০১২ সাল থেকে মঙ্গলের গেল ক্রেটারে সক্রিয়ভাবে গবেষণা চালিয়ে যাওয়া একটি গাড়ি-আকারের রোবট ল্যাবরেটরি, যা প্রাচীন মঙ্গলে অণুজীব বসবাসের উপযোগী জলীয় পরিবেশের চূড়ান্ত প্রমাণ আবিষ্কার করেছে।"
     },
     {
         id: "perseverance-rover",
@@ -228,7 +244,8 @@ const hardwareData = [
         how: "Combines six-wheel mobility with a robotic sampling system, advanced cameras, spectrometers, environmental sensors, and the PIXL and SHERLOC instruments.",
         happened: "Landed in Jezero Crater in February 2021 and has been conducting surface science and sample-caching operations.",
         why: "The rover is designed as a long-duration surface platform and remains on Mars after each mission activity.",
-        science: "Provides detailed geological evidence from an ancient lake-and-delta environment and preserves samples intended to support future Mars exploration."
+        science: "Provides detailed geological evidence from an ancient lake-and-delta environment and preserves samples intended to support future Mars exploration.",
+        narrationBn: "পারসিভিয়ারেন্স মার্স রোভার। জেজেরো ক্রেটারে প্রাচীন লেক ও ব-দ্বীপের নমুনা সংগ্রহ করে ভবিষ্যৎ মার্স স্যাম্পল রিটার্ন মিশনের জন্য সুরক্ষিত টিউবে সংরক্ষণ করে চলেছে।"
     },
     {
         id: "insight-lander",
@@ -243,7 +260,8 @@ const hardwareData = [
         how: "Used a sensitive seismometer, heat-flow experiment, pressure and weather sensors, and a robotic deployment arm on a stationary lander platform.",
         happened: "Operated on Mars from 2018 until its mission ended after solar-panel dust accumulation reduced available power.",
         why: "InSight was a stationary scientific platform intended to perform measurements at one carefully selected landing site.",
-        science: "Returned the first comprehensive seismic observations from Mars and revealed new information about the planet's crust, mantle, and core."
+        science: "Returned the first comprehensive seismic observations from Mars and revealed new information about the planet's crust, mantle, and core.",
+        narrationBn: "ইনসাইট মার্স ল্যান্ডার। ২০১৮ সালে এলিসিয়াম প্ল্যানিশিয়াতে অবতরণকারী সিসমিক স্টেশন যা মঙ্গলে ১,৩০০টিরও বেশি ভূমিকম্প বা মার্সকোয়েক রেকর্ড করে মঙ্গলের ভূত্বক ও তরল কোরের ভেতরের গঠন উন্মোচন করেছে।"
     }
 ];
 
@@ -708,6 +726,8 @@ function resetHardwareView(){hw360Angle=0;paintHardwareRotation();}
 
 async function openModal(id) {
     const item = hardwareData.find(h => h.id === id) || hardwareData[0];
+    const modalEl = document.getElementById('hwModal');
+    if (modalEl) modalEl.dataset.currentHwId = item.id;
     document.getElementById('mTitle').innerText = item.name;
     document.getElementById('mSub').innerText = `${item.target.toUpperCase()} HARDWARE | ${item.mission} • ${item.year}`;
     document.querySelector('#mOverview span').innerText = item.summary || item.purpose;

@@ -1,20 +1,21 @@
 # 🚀 BEYOND ATLAS — Left Behind, Not Forgotten
-### NASA Space Apps Challenge Project
+### NASA Space Apps Challenge · Global Entry · Team AstroForge
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-nasa--beyond--atlas.vercel.app-00dfa2.svg)](https://nasa-beyond-atlas.vercel.app/)
 [![NASA Space Apps](https://img.shields.io/badge/NASA-Space%20Apps%20Challenge-blue.svg)](https://www.spaceappschallenge.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Three.js](https://img.shields.io/badge/Three.js-r128-black.svg)](https://threejs.org/)
 [![WebGL](https://img.shields.io/badge/WebGL-2.0-red.svg)](https://www.khronos.org/webgl/)
 
-> **"Left Behind, Not Forgotten"** — An interactive 3D space exploration platform commemorating the legendary rovers, landers, and scientific hardware humanity has deployed across the Moon, Mars, and the cosmos.
+🌐 **Live Application:** [https://nasa-beyond-atlas.vercel.app](https://nasa-beyond-atlas.vercel.app)
+
+> **"Left Behind, Not Forgotten"** — An interactive 3D planetary exploration platform commemorating the legendary rovers, landers, and scientific hardware humanity has deployed across the Moon, Mars, and deep space. Built by **Team AstroForge** for the **NASA Space Apps Challenge**.
 
 ---
 
 ## 🌟 Overview
 
-**Beyond Atlas** is an immersive, educational web application created for the **NASA Space Apps Challenge**. It provides a window into robotic planetary exploration, celebrating the mechanical pioneers that opened new worlds for human knowledge.
-
-The platform bridges real NASA scientific data with real-time 3D interactive graphics, engaging simulations, and interactive learning tools.
+**Beyond Atlas** is an immersive, accessible web platform that brings human exploration history to life. Designed for STEM students, researchers, and global space enthusiasts, the platform bridges real NASA open science data with real-time 3D graphics, physics-driven flight simulations, and bilingual voice-guided accessibility (English & Bengali).
 
 ---
 
