@@ -70,20 +70,16 @@
     </div>
   </header>
 
-  <!-- HERO SECTION: 100% MATCHING PICTURE 1 (FULL CINEMATIC PANORAMA & ASTRONAUT) -->
+  <!-- HERO SECTION: PICTURE 1 & PICTURE 2 SIDE-BY-SIDE INTEGRATION -->
   <div class="beyond-hero-wrap" id="hero">
-    <!-- 3D Live Celestial Animation Layer (Rotating Mars, Orbiting Moon, 3D Stars & Parallax) -->
-    <div aria-hidden="true" class="beyond-hero-celestial-layer">
-      <canvas aria-label="3D Live Cosmic Sky Animation" id="beyondHeroSkyCanvas"></canvas>
-    </div>
     <div aria-hidden="true" class="beyond-hero-bg"></div>
 
     <div class="beyond-hero-content">
       <div class="beyond-hero-top">
-        <!-- Left Hero Copy (3D planet animation weaves inside/behind this area) -->
+        <!-- Left Hero Copy Card (Matching Picture 1 with High-Contrast Legible Atlas) -->
         <div class="beyond-hero-copy">
           <div class="beyond-eyebrow">EXPLORE • LEARN • DISCOVER</div>
-          <h1 class="beyond-hero-title">Beyond <span class="cyan">Atlas</span></h1>
+          <h1 class="beyond-hero-title">Beyond <span class="cyan" style="color:#00e5ff !important; -webkit-text-fill-color:#00e5ff !important; background:none !important; text-shadow:0 2px 10px rgba(0,0,0,0.95), 0 0 12px rgba(0,229,255,0.4) !important; display:inline !important;">Atlas</span></h1>
           <h2 class="beyond-hero-subtitle">Your Interactive Space Explorer</h2>
           <p class="beyond-hero-desc" id="heroDesc">
             Explore the universe with immersive 3D planets, real NASA missions, live space data, games and educational tools.
@@ -91,6 +87,66 @@
           <div class="beyond-cta-row">
             <a class="btn-cyan-pill" href="#featuredMars3D">🚀 Start Exploring</a>
             <button class="btn-glass-pill" onclick="openHardwareVideo('perseverance')" type="button">▷ Watch Video</button>
+          </div>
+          <div class="hero-quick-pills">
+            <span class="hero-quick-pill">✦ 3D Planets</span>
+            <span class="hero-quick-pill">✦ NASA Missions</span>
+            <span class="hero-quick-pill">✦ Live Telemetry</span>
+          </div>
+        </div>
+
+        <!-- Right Side: Realistic Interactive 3D Planet Stage Card (Matching Picture 2 Exactly) -->
+        <div class="hero-world-stage-card">
+          <!-- Header Kicker & Title -->
+          <div class="world-stage-header">
+            <div class="stage-kicker" id="heroStageKicker">NASA-INSPIRED 3D WORLDS</div>
+            <h3 class="stage-title" id="heroStageTitle">EARTH · 3D EXPLORATION</h3>
+          </div>
+
+          <!-- 3D Canvas with Quick Controls Overlay -->
+          <div class="world-stage-canvas-wrap">
+            <div class="stage-controls-overlay">
+              <button type="button" class="stage-ctrl-btn" onclick="window.__baHeroControls && window.__baHeroControls.toggleRotation()" title="Toggle Rotation">⟳ Rotate</button>
+              <button type="button" class="stage-ctrl-btn" onclick="window.__baHeroControls && window.__baHeroControls.zoomIn()" title="Zoom In">+</button>
+              <button type="button" class="stage-ctrl-btn" onclick="window.__baHeroControls && window.__baHeroControls.zoomOut()" title="Zoom Out">−</button>
+              <button type="button" class="stage-ctrl-btn" onclick="window.__baHeroControls && window.__baHeroControls.reset()" title="Reset View">↺</button>
+            </div>
+            <canvas id="heroPlanetCanvas" aria-label="Interactive 3D Planet Explorer (Earth, Mars, Moon)"></canvas>
+            <div class="stage-drag-hint">DRAG TO ROTATE • CLICK PINS FOR MISSION INFO</div>
+
+            <!-- Interactive 3D Location Marker Info Popup -->
+            <div class="stage-location-popup" id="stageLocationPopup" style="display: none;">
+              <button class="stage-popup-close" onclick="window.closeStageLocationPopup && window.closeStageLocationPopup()" type="button" aria-label="Close location popup">✕</button>
+              <div class="popup-badge" id="popupBadge">📍 MISSION LAUNCH SITE</div>
+              <h4 class="popup-title" id="popupTitle">Kennedy Space Center · Launch Complex 39A</h4>
+              <div class="popup-coords" id="popupCoords">28.57° N, 80.65° W · Cape Canaveral, FL</div>
+              <p class="popup-desc" id="popupDesc">Historic NASA spaceport for Apollo Moon landings, Space Shuttle launches, and modern Artemis / Commercial Crew missions.</p>
+              <div class="popup-meta" id="popupMeta">
+                <span class="popup-meta-item">🚀 <b>Port:</b> NASA KSC</span>
+                <span class="popup-meta-item">📡 <b>Status:</b> Active Launch Complex</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Planet Selector Pills: MARS, MOON, EARTH (Matching Picture 2 with EARTH active) -->
+          <div class="stage-planet-selector" role="tablist" aria-label="Select 3D planet to explore">
+            <button type="button" class="planet-tab-btn" data-planet="mars" onclick="window.__baHeroControls && window.__baHeroControls.setPlanet('mars')">
+              <span>🔴</span> MARS
+            </button>
+            <button type="button" class="planet-tab-btn" data-planet="moon" onclick="window.__baHeroControls && window.__baHeroControls.setPlanet('moon')">
+              <span>🌕</span> MOON
+            </button>
+            <button type="button" class="planet-tab-btn active" data-planet="earth" onclick="window.__baHeroControls && window.__baHeroControls.setPlanet('earth')">
+              <span>🌍</span> EARTH
+            </button>
+          </div>
+
+          <!-- Quick Location & Mission Landing Site Chips (Matching Picture 2) -->
+          <div class="stage-location-bar">
+            <span class="location-bar-label">📍 CLICK SITES TO EXPLORE MISSIONS:</span>
+            <div class="stage-location-chips" id="stageLocationChips">
+              <!-- Dynamically populated chips -->
+            </div>
           </div>
         </div>
       </div>
@@ -138,7 +194,7 @@
         </a>
       </nav>
 
-      <!-- FEATURED SPOTLIGHT CARD: EXPLORE MARS IN 3D + REALISTIC 3D STAGE (PICTURE 1 & PICTURE 2 INTEGRATED) -->
+      <!-- FEATURED SPOTLIGHT CARD: PICTURE 1 ANIMATION ADDED WHERE 2ND PICTURE WAS -->
       <section aria-labelledby="marsSpotlightHeading" class="beyond-spotlight-card ba-reveal ba-revealed" id="featuredMars3D">
         <div class="spotlight-split-layout">
           <!-- Left side copy from Picture 1 -->
@@ -148,7 +204,7 @@
               <h2 id="marsSpotlightHeading">Explore <span class="orange">Mars</span> in 3D</h2>
             </div>
             <p class="spotlight-desc">
-              Get a closer look at the Red Planet. Rotate, zoom and explore its surface in an interactive 3D view.
+              Get a closer look at the Red Planet. Rotate, zoom and explore its surface in an interactive 3D view with realistic orbital physics.
             </p>
 
             <div class="spotlight-checklist">
@@ -171,57 +227,44 @@
             </div>
           </div>
 
-          <!-- Right side: Realistic Interactive 3D Planet Stage Card (Picture 2 Controls) -->
-          <div class="hero-world-stage-card">
+          <!-- Right side: Cinematic 3D Celestial Mars Animation Stage (FROM PICTURE 1) -->
+          <div class="spotlight-celestial-stage-card">
             <!-- Header Kicker & Title -->
-            <div class="world-stage-header">
-              <div class="stage-kicker" id="heroStageKicker">NASA-INSPIRED 3D WORLDS</div>
-              <h3 class="stage-title" id="heroStageTitle">MARS · 3D EXPLORATION</h3>
+            <div class="celestial-stage-header">
+              <div class="stage-kicker">NASA CELESTIAL SIMULATION</div>
+              <h3 class="stage-title">MARS IN MOTION · 3D ORBITAL VIEW</h3>
+              <span class="stage-live-badge"><span class="badge-dot"></span> LIVE 3D SIMULATION</span>
             </div>
 
-            <!-- 3D Canvas with Quick Controls Overlay -->
-            <div class="world-stage-canvas-wrap">
+            <!-- 3D Canvas Box -->
+            <div class="celestial-canvas-wrap">
               <div class="stage-controls-overlay">
-                <button type="button" class="stage-ctrl-btn" onclick="window.__baHeroControls && window.__baHeroControls.toggleRotation()" title="Toggle Rotation">⟳ Rotate</button>
-                <button type="button" class="stage-ctrl-btn" onclick="window.__baHeroControls && window.__baHeroControls.zoomIn()" title="Zoom In">+</button>
-                <button type="button" class="stage-ctrl-btn" onclick="window.__baHeroControls && window.__baHeroControls.zoomOut()" title="Zoom Out">−</button>
-                <button type="button" class="stage-ctrl-btn" onclick="window.__baHeroControls && window.__baHeroControls.reset()" title="Reset View">↺</button>
+                <button type="button" class="stage-ctrl-btn" onclick="window.__baCelestialControls && window.__baCelestialControls.toggleRotation()" title="Toggle Rotation">⟳ Rotate</button>
+                <button type="button" class="stage-ctrl-btn" onclick="window.__baCelestialControls && window.__baCelestialControls.zoomIn()" title="Zoom In">+</button>
+                <button type="button" class="stage-ctrl-btn" onclick="window.__baCelestialControls && window.__baCelestialControls.zoomOut()" title="Zoom Out">−</button>
+                <button type="button" class="stage-ctrl-btn" onclick="window.__baCelestialControls && window.__baCelestialControls.reset()" title="Reset View">↺</button>
               </div>
-              <canvas id="heroPlanetCanvas" aria-label="Interactive 3D Planet Explorer (Mars, Moon, Earth)"></canvas>
-              <div class="stage-drag-hint">DRAG TO ROTATE • CLICK PINS FOR MISSION INFO</div>
-
-              <!-- Interactive 3D Location Marker Info Popup -->
-              <div class="stage-location-popup" id="stageLocationPopup" style="display: none;">
-                <button class="stage-popup-close" onclick="window.closeStageLocationPopup && window.closeStageLocationPopup()" type="button" aria-label="Close location popup">✕</button>
-                <div class="popup-badge" id="popupBadge">📍 MISSION LANDING SITE</div>
-                <h4 class="popup-title" id="popupTitle">Jezero Crater · Perseverance Rover</h4>
-                <div class="popup-coords" id="popupCoords">18.38° N, 77.58° E · Mars 2020 Mission</div>
-                <p class="popup-desc" id="popupDesc">Touchdown site of NASA's Perseverance Rover & Ingenuity Helicopter. Exploring an ancient delta to search for biosignatures.</p>
-                <div class="popup-meta" id="popupMeta">
-                  <span class="popup-meta-item">🚀 <b>Launched:</b> 2020</span>
-                  <span class="popup-meta-item">📡 <b>Status:</b> Active on Mars</span>
-                </div>
-              </div>
+              <canvas id="spotlightCelestialCanvas" aria-label="Cinematic 3D Mars Celestial Animation with Orbiting Moon and Atmosphere"></canvas>
+              <div class="stage-drag-hint">DRAG TO ROTATE • REAL-TIME CELESTIAL PHYSICS</div>
             </div>
 
-            <!-- Planet Selector Pills: MARS, MOON, EARTH -->
-            <div class="stage-planet-selector" role="tablist" aria-label="Select 3D planet to explore">
-              <button type="button" class="planet-tab-btn active" data-planet="mars" onclick="window.__baHeroControls && window.__baHeroControls.setPlanet('mars')">
-                <span>🔴</span> MARS
-              </button>
-              <button type="button" class="planet-tab-btn" data-planet="moon" onclick="window.__baHeroControls && window.__baHeroControls.setPlanet('moon')">
-                <span>🌕</span> MOON
-              </button>
-              <button type="button" class="planet-tab-btn" data-planet="earth" onclick="window.__baHeroControls && window.__baHeroControls.setPlanet('earth')">
-                <span>🌍</span> EARTH
-              </button>
-            </div>
-
-            <!-- Quick Location & Mission Landing Site Chips -->
-            <div class="stage-location-bar">
-              <span class="location-bar-label">📍 CLICK SITES TO EXPLORE MISSIONS:</span>
-              <div class="stage-location-chips" id="stageLocationChips">
-                <!-- Dynamically populated chips -->
+            <!-- Scientific Telemetry Specs Bar -->
+            <div class="celestial-specs-bar">
+              <div class="celestial-spec-item">
+                <span class="spec-label">AXIAL TILT</span>
+                <span class="spec-val">25.2°</span>
+              </div>
+              <div class="celestial-spec-item">
+                <span class="spec-label">ATMOSPHERE</span>
+                <span class="spec-val">Glowing Corona</span>
+              </div>
+              <div class="celestial-spec-item">
+                <span class="spec-label">NATURAL SATELLITE</span>
+                <span class="spec-val">Orbiting Moon</span>
+              </div>
+              <div class="celestial-spec-item">
+                <span class="spec-label">SURFACE MAP</span>
+                <span class="spec-val">NASA High-Res Bump</span>
               </div>
             </div>
           </div>

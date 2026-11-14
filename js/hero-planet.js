@@ -15,7 +15,7 @@
   let velX = 0, velY = 0;
   let zoom = 4.2, targetZoom = 4.2;
   let autoRotate = true;
-  let currentPlanetKey = 'mars';
+  let currentPlanetKey = 'earth';
   let isInitialized = false;
 
   const planetConfigs = {
@@ -447,25 +447,6 @@
     if (titleEl) titleEl.innerText = cfg.title;
     if (kickerEl) kickerEl.innerText = cfg.kicker;
 
-    // Update Card Heading & Description to match the active planet
-    const cardHeadingEl = document.getElementById('marsSpotlightHeading');
-    const cardDescEl = document.querySelector('.spotlight-desc');
-    const actionBtnEl = document.getElementById('spotlightActionBtn');
-    if (cardHeadingEl && cfg.cardTitle) cardHeadingEl.innerHTML = cfg.cardTitle;
-    if (cardDescEl && cfg.cardDesc) cardDescEl.innerText = cfg.cardDesc;
-    if (actionBtnEl) {
-      if (key === 'mars') {
-        actionBtnEl.innerHTML = 'Explore Mars →';
-        actionBtnEl.href = 'explore.html#mars';
-      } else if (key === 'moon') {
-        actionBtnEl.innerHTML = 'Explore Moon →';
-        actionBtnEl.href = 'explore.html#moon';
-      } else {
-        actionBtnEl.innerHTML = 'Explore Earth Orbit →';
-        actionBtnEl.href = 'explore.html';
-      }
-    }
-
     // Update active tab buttons
     document.querySelectorAll('.planet-tab-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.planet === key);
@@ -757,6 +738,9 @@
           renderer.render(scene, camera);
         }
       }
+      // Set initial planet to Earth (matching Picture 2)
+      applyPlanet('earth');
+
       animate();
 
       isInitialized = true;

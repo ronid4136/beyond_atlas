@@ -1,7 +1,7 @@
 /**
- * Beyond Atlas - Hero Celestial 3D Sky Engine
+ * Beyond Atlas - Cinematic Celestial 3D Mars Engine
  * Real-time rotating 3D Mars, orbiting Moon, atmospheric corona & cosmic starfield
- * Seamlessly tracks the celestial line-of-sight where the astronaut looks
+ * Embedded in the Featured Spotlight Card (where 2nd picture originally was)
  * NASA Space Apps Challenge
  */
 
@@ -11,29 +11,33 @@
   let renderer, scene, camera, marsGroup, marsMesh, atmoMesh, moonMesh, orbitMesh, starPoints;
   let canvas, host;
   let moonAngle = 0;
-  let targetCamX = 0, targetCamY = 0;
+  let isDragging = false, lastX = 0, lastY = 0;
+  let targetRotX = 0.08, targetRotY = 0.35, currentRotX = 0.08, currentRotY = 0.35;
+  let zoom = 4.4, targetZoom = 4.4;
+  let autoRotate = true;
   let isInitialized = false;
 
-  function initHeroSky() {
+  function initCelestialSimulation() {
     if (isInitialized) return;
-    canvas = document.getElementById('beyondHeroSkyCanvas');
+
+    // Look for the spotlight celestial canvas first, fallback to hero canvas if needed
+    canvas = document.getElementById('spotlightCelestialCanvas') || document.getElementById('beyondHeroSkyCanvas');
     if (!canvas) return;
     host = canvas.parentElement;
     if (!host || !window.THREE) {
-      setTimeout(initHeroSky, 50);
+      setTimeout(initCelestialSimulation, 60);
       return;
     }
 
     const T = window.THREE;
-    const w = host.clientWidth || window.innerWidth;
-    const h = host.clientHeight || window.innerHeight;
+    const w = Math.max(260, host.clientWidth || 360);
+    const h = Math.max(240, host.clientHeight || 280);
 
     try {
       scene = new T.Scene();
 
-      // Camera setup with natural cinematic perspective
       camera = new T.PerspectiveCamera(38, w / h, 0.1, 100);
-      camera.position.set(0, 0, 7.8);
+      camera.position.set(0, 0, zoom);
 
       renderer = new T.WebGLRenderer({
         canvas,
@@ -41,24 +45,24 @@
         antialias: true,
         powerPreference: 'high-performance'
       });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.setSize(w, h, false);
       if ('outputColorSpace' in renderer) renderer.outputColorSpace = T.SRGBColorSpace;
       else if ('outputEncoding' in renderer) renderer.outputEncoding = T.sRGBEncoding;
 
       // Realistic Celestial Lighting (Sun keylight from top-left)
-      const ambient = new T.AmbientLight(0x1e293b, 0.6);
+      const ambient = new T.AmbientLight(0x231828, 0.7);
       scene.add(ambient);
 
-      const sun = new T.DirectionalLight(0xfff5ea, 2.4);
-      sun.position.set(-6, 4.5, 4.5);
+      const sun = new T.DirectionalLight(0xfff1e6, 2.6);
+      sun.position.set(-5.5, 4.0, 5.0);
       scene.add(sun);
 
-      const rimLight = new T.DirectionalLight(0x38bdf8, 0.35);
-      rimLight.position.set(5, -2, -3);
+      const rimLight = new T.DirectionalLight(0x38bdf8, 0.42);
+      rimLight.position.set(5.0, -2.5, -3.5);
       scene.add(rimLight);
 
-      // Texture loader with error resilience
+      // Texture loader with error resilience & fallbacks
       const loader = new T.TextureLoader();
       const loadTex = (url) => {
         const tex = loader.load(
@@ -68,7 +72,7 @@
           },
           undefined,
           (err) => {
-            console.warn('Hero texture load warning:', url, err);
+            console.warn('Celestial texture warning:', url, err);
           }
         );
         tex.wrapS = T.ClampToEdgeWrapping;
@@ -83,14 +87,15 @@
 
       // Mars Main Celestial Group
       marsGroup = new T.Group();
+      marsGroup.position.set(0, 0, 0);
       scene.add(marsGroup);
 
-      // Mars 3D Sphere - Base radius 1.0, scaled dynamically to match background
-      const marsGeo = new T.SphereGeometry(1.0, 72, 72);
+      // Mars 3D Sphere - High detail with 96 segments
+      const marsGeo = new T.SphereGeometry(1.22, 96, 96);
       const marsMat = new T.MeshStandardMaterial({
         map: marsTexture,
         bumpMap: marsBump,
-        bumpScale: 0.045,
+        bumpScale: 0.05,
         roughness: 0.76,
         metalness: 0.04,
         color: 0xffffff
@@ -100,11 +105,11 @@
       marsGroup.add(marsMesh);
 
       // Glowing Atmosphere Shell (Rayleigh scattering rim)
-      const atmoGeo = new T.SphereGeometry(1.028, 64, 64);
+      const atmoGeo = new T.SphereGeometry(1.258, 64, 64);
       const atmoMat = new T.MeshBasicMaterial({
         color: 0xff6e38,
         transparent: true,
-        opacity: 0.32,
+        opacity: 0.36,
         side: T.BackSide,
         blending: T.AdditiveBlending
       });
@@ -117,7 +122,7 @@
         map: moonTexture,
         bumpMap: moonTexture,
         bumpScale: 0.04,
-        roughness: 0.9,
+        roughness: 0.88,
         metalness: 0.02,
         color: 0xf1f5f9
       });
@@ -126,10 +131,10 @@
 
       // Elegant Orbital Trajectory Ring
       const orbitPts = [];
-      const rx = 1.95, ry = 0.88;
+      const rx = 2.2, ry = 0.95;
       for (let i = 0; i <= 240; i++) {
         const a = (i / 240) * Math.PI * 2;
-        orbitPts.push(new T.Vector3(Math.cos(a) * rx, Math.sin(a) * ry, -0.04));
+        orbitPts.push(new T.Vector3(Math.cos(a) * rx, Math.sin(a) * ry, -0.05));
       }
       const orbitGeo = new T.BufferGeometry().setFromPoints(orbitPts);
       orbitMesh = new T.LineLoop(
@@ -137,21 +142,21 @@
         new T.LineBasicMaterial({
           color: 0xff8c42,
           transparent: true,
-          opacity: 0.22,
+          opacity: 0.32,
           linewidth: 1
         })
       );
-      orbitMesh.rotation.z = -0.2;
+      orbitMesh.rotation.z = -0.22;
       marsGroup.add(orbitMesh);
 
       // Deep Space Starfield Particles
-      const starCount = 480;
+      const starCount = 420;
       const starPos = [];
       for (let i = 0; i < starCount; i++) {
         starPos.push(
-          (Math.random() - 0.5) * 26,
-          (Math.random() - 0.5) * 16,
-          -2 - Math.random() * 10
+          (Math.random() - 0.5) * 22,
+          (Math.random() - 0.5) * 14,
+          -2.5 - Math.random() * 8
         );
       }
       const starGeo = new T.BufferGeometry();
@@ -165,73 +170,76 @@
       starPoints = new T.Points(starGeo, starMat);
       scene.add(starPoints);
 
-      // Precise Mathematical Alignment to the Background Mars Art
-      function updatePlanetPosition() {
-        if (!camera || !marsGroup || !host) return;
-        const curW = host.clientWidth || window.innerWidth;
-        const curH = host.clientHeight || window.innerHeight;
-        const isMob = window.innerWidth <= 768;
+      // Drag to rotate with smooth inertia
+      canvas.style.touchAction = 'none';
+      canvas.style.cursor = 'grab';
 
-        const W_img = 1376, H_img = 768;
-        const bgPosXPercent = isMob ? 62 : 100; // 62% on mobile, 100% (right) on desktop
+      canvas.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        canvas.style.cursor = 'grabbing';
+        try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
+      });
 
-        const scale = Math.max(curW / W_img, curH / H_img);
-        const W_rend = W_img * scale;
-        const H_rend = H_img * scale;
+      canvas.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        lastX = e.clientX;
+        lastY = e.clientY;
 
-        const offset_X = (curW - W_rend) * (bgPosXPercent / 100);
-        const offset_Y = (curH - H_rend) * 0.5;
+        targetRotY += dx * 0.007;
+        targetRotX = Math.max(-1.1, Math.min(1.1, targetRotX + dy * 0.007));
+      });
 
-        let screenX = offset_X + 780 * scale;
-        let screenY = offset_Y + 320 * scale;
-        let screenRadius = 235 * scale;
+      const stopDrag = (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        canvas.style.cursor = 'grab';
+        try {
+          if (e && e.pointerId) canvas.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+      };
 
-        // Ensure Mars stays in the right-side celestial sky and never collides with the left text column
-        if (!isMob && curW > 860) {
-          const textRightBoundary = 610;
-          if (screenX - screenRadius < textRightBoundary) {
-            screenX = textRightBoundary + screenRadius * 0.95;
-          }
+      canvas.addEventListener('pointerup', stopDrag);
+      canvas.addEventListener('pointercancel', stopDrag);
+      canvas.addEventListener('lostpointercapture', stopDrag);
+
+      canvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        targetZoom = Math.max(3.2, Math.min(6.5, targetZoom + e.deltaY * 0.0035));
+      }, { passive: false });
+
+      // Public Controls for Buttons
+      window.__baCelestialControls = {
+        toggleRotation: function () {
+          autoRotate = !autoRotate;
+          return autoRotate;
+        },
+        zoomIn: function () {
+          targetZoom = Math.max(3.0, targetZoom - 0.45);
+        },
+        zoomOut: function () {
+          targetZoom = Math.min(6.5, targetZoom + 0.45);
+        },
+        reset: function () {
+          targetRotX = 0.08;
+          targetRotY = 0.35;
+          targetZoom = 4.4;
+          autoRotate = true;
         }
-
-        // Convert (screenX, screenY) to Three.js world coordinates at z = 0
-        const ndcX = (screenX / curW) * 2 - 1;
-        const ndcY = -(screenY / curH) * 2 + 1;
-
-        const vec = new T.Vector3(ndcX, ndcY, 0.5);
-        vec.unproject(camera);
-        const dir = vec.sub(camera.position).normalize();
-        const targetZ = 0;
-        const dist = (targetZ - camera.position.z) / dir.z;
-        const worldPos = camera.position.clone().add(dir.multiplyScalar(dist));
-
-        marsGroup.position.set(worldPos.x, worldPos.y, targetZ);
-
-        // Match the 3D sphere radius to the screen radius
-        const vFOV = (camera.fov * Math.PI) / 180;
-        const visibleHeightWorld = 2 * Math.tan(vFOV / 2) * Math.abs(camera.position.z);
-        const worldRadius = (screenRadius / curH) * visibleHeightWorld;
-        marsGroup.scale.set(worldRadius, worldRadius, worldRadius);
-      }
-      updatePlanetPosition();
-
-      // Smooth Parallax on mouse/touch movement
-      window.addEventListener('pointermove', (e) => {
-        const x = (e.clientX / window.innerWidth) * 2 - 1;
-        const y = -(e.clientY / window.innerHeight) * 2 + 1;
-        targetCamX = x * 0.28;
-        targetCamY = y * 0.16;
-      }, { passive: true });
+      };
 
       // Responsive Resize Handler
       const onResize = () => {
         if (!renderer || !host || !camera) return;
-        const width = host.clientWidth || window.innerWidth;
-        const height = host.clientHeight || window.innerHeight;
+        const width = host.clientWidth || 360;
+        const height = host.clientHeight || 280;
+        if (width === 0 || height === 0) return;
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height, false);
-        updatePlanetPosition();
       };
 
       if (window.ResizeObserver) {
@@ -239,24 +247,34 @@
       }
       window.addEventListener('resize', onResize);
 
-      // 60 FPS Smooth Render Loop
-      let lastTime = 0;
-      function animate(time) {
+      // 60 FPS Render Loop with Smooth Physics
+      function animate() {
         requestAnimationFrame(animate);
         if (document.hidden) return;
 
+        currentRotX += (targetRotX - currentRotX) * 0.08;
+        currentRotY += (targetRotY - currentRotY) * 0.08;
+        zoom += (targetZoom - zoom) * 0.08;
+
+        camera.position.z = zoom;
+
         // Smooth Mars continuous rotation
         if (marsMesh) {
-          marsMesh.rotation.y += 0.0022;
+          marsMesh.rotation.x = currentRotX;
+          marsMesh.rotation.y = currentRotY;
+
+          if (autoRotate && !isDragging) {
+            targetRotY += 0.0022;
+          }
         }
 
         // Orbiting Moon physics
         moonAngle += 0.0035;
         if (moonMesh) {
           moonMesh.position.set(
-            Math.cos(moonAngle) * 1.95,
-            Math.sin(moonAngle) * 0.88,
-            Math.sin(moonAngle) * 0.38
+            Math.cos(moonAngle) * 2.2,
+            Math.sin(moonAngle) * 0.95,
+            Math.sin(moonAngle) * 0.42
           );
           moonMesh.rotation.y += 0.004;
         }
@@ -266,24 +284,24 @@
           starPoints.rotation.y += 0.00012;
         }
 
-        // Smooth camera parallax easing
-        camera.position.x += (targetCamX - camera.position.x) * 0.05;
-        camera.position.y += (targetCamY - camera.position.y) * 0.05;
+        if (orbitMesh) {
+          orbitMesh.rotation.z += 0.0004;
+        }
 
         renderer.render(scene, camera);
       }
-      requestAnimationFrame(animate);
+      animate();
 
       isInitialized = true;
     } catch (e) {
-      console.warn('Hero celestial 3D sky failed to initialize:', e);
+      console.warn('Spotlight celestial 3D simulation failed to initialize:', e);
     }
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeroSky);
+    document.addEventListener('DOMContentLoaded', initCelestialSimulation);
   } else {
-    initHeroSky();
+    initCelestialSimulation();
   }
-  window.addEventListener('load', initHeroSky);
+  window.addEventListener('load', initCelestialSimulation);
 })();

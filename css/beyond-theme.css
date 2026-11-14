@@ -132,9 +132,11 @@ header {
 
 .atlas-word em {
   font-style: normal !important;
-  color: var(--ba-cyan) !important;
+  color: #00f0ff !important;
+  font-weight: 800 !important;
   margin-left: 4px !important;
-  text-shadow: 0 0 15px var(--ba-cyan-glow) !important;
+  letter-spacing: 3.2px !important;
+  text-shadow: 0 0 14px rgba(0, 240, 255, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
 /* Navigation Links */
@@ -314,11 +316,17 @@ header nav a.active {
 }
 
 .beyond-hero-top {
-  display: block !important;
-  max-width: 620px !important;
-  padding: clamp(20px, 3vw, 40px) 0 !important;
-  min-height: clamp(340px, 45vh, 480px) !important;
+  display: grid !important;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.05fr) !important;
+  gap: clamp(20px, 2.5vw, 36px) !important;
+  align-items: stretch !important;
+  max-width: 1360px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: clamp(20px, 2.8vw, 38px) 0 clamp(16px, 2vw, 30px) !important;
+  min-height: auto !important;
   position: relative !important;
+  z-index: 10 !important;
 }
 
 /* Left Text Column with Smooth Cinematic Entrance & Dark Frosted Glass Isolation */
@@ -326,16 +334,18 @@ header nav a.active {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
+  justify-content: center !important;
   position: relative !important;
   z-index: 10 !important;
-  background: radial-gradient(circle at 15% 25%, rgba(4, 9, 22, 0.92) 0%, rgba(3, 7, 18, 0.84) 65%, rgba(3, 7, 18, 0.55) 100%) !important;
+  background: radial-gradient(circle at 15% 25%, rgba(4, 9, 22, 0.94) 0%, rgba(3, 7, 18, 0.88) 65%, rgba(3, 7, 18, 0.65) 100%) !important;
   backdrop-filter: blur(24px) saturate(190%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 24px !important;
-  padding: clamp(22px, 2.8vw, 36px) !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(0, 212, 255, 0.12) !important;
-  max-width: 580px !important;
+  padding: clamp(22px, 2.6vw, 34px) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(0, 212, 255, 0.14) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .beyond-eyebrow {
@@ -378,9 +388,9 @@ header nav a.active {
 
 .beyond-hero-title {
   font-family: 'Space Grotesk', 'Orbitron', system-ui, sans-serif !important;
-  font-size: clamp(38px, 5.2vw, 68px) !important;
+  font-size: clamp(34px, 4.2vw, 58px) !important;
   font-weight: 800 !important;
-  line-height: 1.05 !important;
+  line-height: 1.08 !important;
   color: #ffffff !important;
   margin: 0 0 10px 0 !important;
   letter-spacing: -0.5px !important;
@@ -388,19 +398,42 @@ header nav a.active {
   animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both !important;
 }
 
-.beyond-hero-title span.cyan {
-  color: #38bdf8 !important;
-  text-shadow: 0 0 28px rgba(56, 189, 248, 0.7), 0 2px 10px rgba(0, 0, 0, 0.95) !important;
-  animation: atlasNeonGlow 3.5s ease-in-out infinite alternate !important;
+/* HIGH-CONTRAST ULTRA-LEGIBLE "ATLAS" STYLING (FIX BLURRINESS / JHAPSHA) */
+#hero h1.beyond-hero-title span.cyan,
+.beyond-hero-title span.cyan,
+.beyond-hero-title .cyan {
+  color: #00e5ff !important;
+  -webkit-text-fill-color: #00e5ff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px !important;
+  display: inline !important;
+  filter: none !important;
+  animation: none !important;
+  opacity: 1 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 12px rgba(0, 229, 255, 0.35) !important;
 }
 
-@keyframes atlasNeonGlow {
-  0% {
-    text-shadow: 0 0 16px rgba(0, 212, 255, 0.4), 0 0 35px rgba(0, 212, 255, 0.2);
-  }
-  100% {
-    text-shadow: 0 0 28px rgba(0, 212, 255, 0.85), 0 0 55px rgba(0, 212, 255, 0.5);
-  }
+.hero-quick-pills {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 18px !important;
+}
+
+.hero-quick-pill {
+  font-family: 'Space Grotesk', 'Orbitron', system-ui, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  background: rgba(15, 23, 42, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 4px 10px !important;
+  border-radius: 12px !important;
+  letter-spacing: 0.5px !important;
+}
 }
 
 @keyframes heroFadeUp {
@@ -1056,6 +1089,134 @@ header nav a.active {
 }
 
 /* ==========================================================================
+   CINEMATIC CELESTIAL STAGE CARD (PICTURE 1 ANIMATION IN SPOTLIGHT)
+   ========================================================================== */
+.spotlight-celestial-stage-card {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  border-radius: 20px !important;
+  border: 1.5px solid rgba(255, 110, 56, 0.45) !important;
+  background: radial-gradient(circle at 50% 30%, rgba(38, 18, 14, 0.92) 0%, rgba(6, 4, 10, 0.97) 85%) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(255, 110, 56, 0.22) !important;
+  padding: 16px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.celestial-stage-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  padding-bottom: 2px !important;
+}
+
+.celestial-stage-header .stage-kicker {
+  font-family: 'Orbitron', system-ui, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: var(--ba-mars) !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  width: 100% !important;
+}
+
+.celestial-stage-header .stage-title {
+  font-family: 'Space Grotesk', 'Orbitron', system-ui, sans-serif !important;
+  font-size: clamp(16px, 1.8vw, 20px) !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 2px 0 0 0 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.stage-live-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px !important;
+  color: #34d399 !important;
+  background: rgba(52, 211, 153, 0.12) !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+  padding: 3px 8px !important;
+  border-radius: 12px !important;
+}
+
+.stage-live-badge .badge-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #34d399 !important;
+  box-shadow: 0 0 8px #34d399 !important;
+  animation: beaconPulse 1.8s ease-in-out infinite !important;
+}
+
+.celestial-canvas-wrap {
+  width: 100% !important;
+  height: clamp(240px, 28vw, 320px) !important;
+  position: relative !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: radial-gradient(circle at center, rgba(38, 20, 16, 0.5) 0%, rgba(2, 4, 10, 0.92) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.celestial-canvas-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.celestial-specs-bar {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 8px !important;
+  padding: 8px 12px !important;
+  background: rgba(6, 4, 10, 0.8) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+@media (max-width: 640px) {
+  .celestial-specs-bar {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+.celestial-spec-item {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.celestial-spec-item .spec-label {
+  font-family: 'Orbitron', system-ui, sans-serif !important;
+  font-size: 8.5px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  letter-spacing: 1px !important;
+}
+
+.celestial-spec-item .spec-val {
+  font-family: 'Space Grotesk', system-ui, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #fed7aa !important;
+}
+
+/* ==========================================================================
    BUTTONS IN 3D HARDWARE (PICTURE 3 FIX)
    ========================================================================== */
 #real-3d-hardware .ba-load-3d-button {
@@ -1245,21 +1406,25 @@ html, body {
     padding: 24px 16px 28px !important;
   }
   .beyond-hero-top {
-    max-width: 100% !important;
-    text-align: center !important;
+    grid-template-columns: 1fr !important;
+    max-width: 680px !important;
+    margin: 0 auto !important;
+    gap: 22px !important;
+    text-align: left !important;
     min-height: auto !important;
-    padding: 16px 0 28px !important;
+    padding: 16px 0 24px !important;
   }
   .beyond-hero-copy {
-    align-items: center !important;
+    align-items: flex-start !important;
+    text-align: left !important;
   }
   .beyond-hero-desc {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    text-align: left !important;
   }
   .beyond-cta-row {
-    justify-content: center !important;
+    justify-content: flex-start !important;
   }
   .beyond-spotlight-card {
     padding: 24px 18px !important;
@@ -1364,7 +1529,8 @@ html, body {
   }
 
   /* Spotlight Card Responsive */
-  .world-stage-canvas-wrap {
+  .world-stage-canvas-wrap,
+  .celestial-canvas-wrap {
     height: clamp(220px, 55vw, 300px) !important;
   }
 
